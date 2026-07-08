@@ -41,6 +41,10 @@ export const metadata: Metadata = {
   },
   description:
     "DOIE builds single-purpose, ad-free reference apps for professionals in medicine, tax, and workplace safety.",
+  // Defense in depth alongside robots.ts's disallow: a noindex meta tag keeps
+  // pages out of results even for crawlers that ignore robots.txt disallow
+  // rules. Remove both once the site is ready for a public launch.
+  robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
