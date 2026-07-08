@@ -94,77 +94,78 @@ export default function CompanyHome() {
       <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
         <div className="mx-auto max-w-5xl">
           <div className="max-w-2xl">
-            <Kicker>How we build</Kicker>
+            <Kicker>Why we build</Kicker>
             <h2 className="mt-5 text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
-              Good data. An interface that stays out of your way.
+              The interface is the work.
             </h2>
             <p className="mt-4 text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-              Most of what we ship starts as public information — government
-              codes, agency rules, published standards — already free to read,
-              just slow to reach and easy to lose track of day to day. We put
-              our effort into two things.
+              DOIE stands for Dynamics Of Interface Engineering. Underneath
+              every app we make is the same belief: a better interface changes
+              more than it looks like it should. Most of the friction people
+              deal with all day — a clunky lookup, a form that fights you, a
+              tool built once and never touched again — isn't a hard problem.
+              It's just one nobody got around to fixing. We got around to it.
             </p>
           </div>
 
-          <div className="mt-10 grid border-t border-l border-[var(--color-line)] sm:grid-cols-2">
+          <div className="mt-10 border-t border-[var(--color-line)]">
             {[
               {
-                title: "The data",
-                body: "We pull from the official source and keep it as published. When the source updates, the app updates — nothing summarized, reworded, or guessed at.",
+                title: "Room to improve, everywhere",
+                body: "We don't think an idea is too small to build, or a field too specialized to improve. A two-tap fix and a workflow one profession leans on all day get the same amount of attention from us. Most tools like that were built once, a long time ago, by someone who's since moved on — we think they're worth a second look.",
               },
               {
-                title: "The interface",
-                body: "Data you can't search in a few seconds isn't useful data. Every app is built around one job: search, read, copy, and keep the parts you use — on your phone, no login, no loading spinner.",
+                title: "Careful, not greedy",
+                body: "We'd rather build a few things well than take on everything at once. Spread thin, quality is the first thing that goes — and quality is the point. So we grow slowly, one problem at a time, and try to actually finish what we start before starting the next thing.",
+              },
+              {
+                title: "A better day for whoever's using it",
+                body: "The people we build for are usually specialists — in a field with its own codes, its own rules, its own way of doing things — and their tools are often the last thing anyone thought to improve. If what we build makes one part of someone's day a little easier, that's the whole point. Enough of that, across enough fields, is what a better environment looks like to us.",
               },
             ].map((c, i) => (
               <div
                 key={c.title}
-                className="border-b border-r border-[var(--color-line)] p-8"
+                className="grid gap-2 border-b border-[var(--color-line)] py-8 sm:grid-cols-[88px_1fr] sm:gap-8"
               >
                 <div className="code-mono text-[13px] text-[var(--color-accent)]">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="mt-4 text-[19px] font-medium tracking-tight">
-                  {c.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
-                  {c.body}
-                </p>
+                <div>
+                  <h3 className="text-[18px] font-medium tracking-tight">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
+                    {c.body}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
-
-          <p className="mt-8 max-w-2xl text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
-            That's the idea: less time spent looking things up, more time on
-            the work in front of you.
-          </p>
         </div>
       </section>
 
       <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
         <div className="mx-auto max-w-4xl">
-          <Kicker>The Snap series</Kicker>
-          <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
-            One shape, wherever the codes are.
-          </h2>
-          <p className="mt-4 max-w-2xl text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-            Snap is our name for this line of apps. Each one takes a
-            professional's reference — a code set, a body of rules — and puts
-            it on your phone: searchable, offline, with a copy button instead
-            of a browser tab. The domain changes; the shape doesn't.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-2">
-            {["Medical coding", "Tax & trade", "Workplace safety", "Aviation", "and more"].map(
-              (tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-[var(--color-line)] px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)]"
-                >
-                  {tag}
-                </span>
-              ),
-            )}
+          <Kicker>Our projects</Kicker>
+          <div className="mt-7 flex items-baseline gap-4">
+            <span className="code-mono text-[15px] text-[var(--color-accent)]">
+              01
+            </span>
+            <h2 className="text-[26px] font-medium tracking-tight sm:text-[32px]">
+              Snap.
+            </h2>
           </div>
+          <p className="mt-4 max-w-2xl text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
+            Snap is the name for a line of apps that each do one job: take a
+            body of reference material — a code set, a set of rules — that a
+            professional needs on hand, and put it on their phone, searchable
+            and organized around how they actually use it. The fields differ:
+            medicine, tax, workplace safety, aviation, and others we're still
+            adding. The shape stays the same.
+          </p>
+          <p className="mt-5 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)]">
+            Snap is the first line. We're working on what comes after it.
+          </p>
         </div>
       </section>
 
