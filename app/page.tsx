@@ -92,6 +92,83 @@ export default function CompanyHome() {
       </section>
 
       <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
+        <div className="mx-auto max-w-5xl">
+          <div className="max-w-2xl">
+            <Kicker>How we build</Kicker>
+            <h2 className="mt-5 text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
+              Good data. An interface that stays out of your way.
+            </h2>
+            <p className="mt-4 text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
+              Most of what we ship starts as public information — government
+              codes, agency rules, published standards — already free to read,
+              just slow to reach and easy to lose track of day to day. We put
+              our effort into two things.
+            </p>
+          </div>
+
+          <div className="mt-10 grid border-t border-l border-[var(--color-line)] sm:grid-cols-2">
+            {[
+              {
+                title: "The data",
+                body: "We pull from the official source and keep it as published. When the source updates, the app updates — nothing summarized, reworded, or guessed at.",
+              },
+              {
+                title: "The interface",
+                body: "Data you can't search in a few seconds isn't useful data. Every app is built around one job: search, read, copy, and keep the parts you use — on your phone, no login, no loading spinner.",
+              },
+            ].map((c, i) => (
+              <div
+                key={c.title}
+                className="border-b border-r border-[var(--color-line)] p-8"
+              >
+                <div className="code-mono text-[13px] text-[var(--color-accent)]">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="mt-4 text-[19px] font-medium tracking-tight">
+                  {c.title}
+                </h3>
+                <p className="mt-2 text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
+                  {c.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-8 max-w-2xl text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
+            That's the idea: less time spent looking things up, more time on
+            the work in front of you.
+          </p>
+        </div>
+      </section>
+
+      <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
+        <div className="mx-auto max-w-4xl">
+          <Kicker>The Snap series</Kicker>
+          <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
+            One shape, wherever the codes are.
+          </h2>
+          <p className="mt-4 max-w-2xl text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
+            Snap is our name for this line of apps. Each one takes a
+            professional's reference — a code set, a body of rules — and puts
+            it on your phone: searchable, offline, with a copy button instead
+            of a browser tab. The domain changes; the shape doesn't.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-2">
+            {["Medical coding", "Tax & trade", "Workplace safety", "Aviation", "and more"].map(
+              (tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-[var(--color-line)] px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)]"
+                >
+                  {tag}
+                </span>
+              ),
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
         <div className="mx-auto max-w-4xl">
           <Kicker>Contact</Kicker>
           <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
