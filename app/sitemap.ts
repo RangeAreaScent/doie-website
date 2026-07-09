@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: path === "" ? 1 : 0.3,
   }));
+  // HiSS lives on its own subdomain (hiss.doie.cc). If a dedicated sitemap
+  // is wanted for that origin later, add app/hiss/sitemap.ts.
 
   const appPages = allApps.flatMap((app) => {
     const root = `${base}/snap/${app.slug}`;
