@@ -6,8 +6,11 @@ export const metadata: Metadata = {
   description:
     "Keep every project you run on its own update cadence — overdue, due this week, or on track, at a glance. Native Mac & iOS. Buy once, no subscription, no servers.",
   alternates: {
-    canonical: "/moderari",
-    languages: { en: "/moderari", ko: "/moderari/ko" },
+    canonical: "https://moderari.doie.cc/",
+    languages: {
+      en: "https://moderari.doie.cc/",
+      ko: "https://moderari.doie.cc/ko",
+    },
   },
 };
 

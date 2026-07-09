@@ -20,7 +20,7 @@ import { NextRequest, NextResponse } from "next/server";
 // - Local dev + Vercel previews (localhost, *.vercel.app) match no rule, so each
 //   product stays reachable at its /<slug> path there.
 
-const SUBDOMAINS = ["hiss", "wren"] as const;
+const SUBDOMAINS = ["hiss", "moderari", "wren", "lootmarker"] as const;
 
 export function middleware(request: NextRequest) {
   // Host header, lowercased, port stripped (so local `curl -H "Host: wren.doie.cc"` works).
