@@ -39,19 +39,43 @@ export default function CompanyHome() {
       </header>
 
       <section className="border-b border-[var(--color-line)] px-6 pt-24 pb-20 sm:pt-32 sm:pb-28">
-        <div className="mx-auto max-w-4xl">
-          <Kicker>
-            {company.legalName} · {company.state}
-          </Kicker>
-          <h1 className="mt-6 max-w-3xl text-[38px] font-medium leading-[1.05] tracking-[-0.02em] sm:text-[54px] lg:text-[60px]">
-            Small, focused apps for the codes and rules you look up all day.
-          </h1>
-          <p className="mt-7 max-w-xl text-[18px] leading-[1.55] text-[var(--color-ink-soft)] sm:text-[19px]">
-            We make single-purpose reference apps for professionals — in
-            medicine, tax, and workplace safety. Each one puts a body of codes or
-            rules on your phone: search it, copy what you need, and keep the set
-            you use. No ads, no account.
-          </p>
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_auto]">
+          <div className="max-w-3xl">
+            <Kicker>
+              {company.legalName} · {company.state}
+            </Kicker>
+            <h1 className="mt-6 max-w-3xl text-[38px] font-medium leading-[1.05] tracking-[-0.02em] sm:text-[54px] lg:text-[60px]">
+              Small, focused apps for the codes and rules you look up all day.
+            </h1>
+            <p className="mt-7 max-w-xl text-[18px] leading-[1.55] text-[var(--color-ink-soft)] sm:text-[19px]">
+              We make single-purpose reference apps for professionals — in
+              medicine, tax, and workplace safety. Each one puts a body of codes
+              or rules on your phone: search it, copy what you need, and keep
+              the set you use — small things that make the day a bit easier.
+              No ads, no account.
+            </p>
+          </div>
+
+          {/* A tone study on the brand slate — one hue, stepped light to dark.
+              Decorative; hidden on small screens to keep the mobile hero plain. */}
+          <div aria-hidden className="hidden lg:grid lg:grid-cols-4 lg:gap-3">
+            {[
+              "#eaeff2",
+              "#d3dfe5",
+              "#aec2cd",
+              "#84a2b1",
+              "#5d8698",
+              "#4e86a0",
+              "#39617a",
+              "#2c4b60",
+            ].map((tone, i) => (
+              <div
+                key={tone}
+                className="h-16 w-16 rounded-lg"
+                style={{ background: tone, marginTop: i % 2 ? 28 : 0 }}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -93,19 +117,34 @@ export default function CompanyHome() {
 
       <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
         <div className="mx-auto max-w-5xl">
-          <div className="max-w-2xl">
-            <Kicker>Why we build</Kicker>
-            <h2 className="mt-5 text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
-              The interface is the work.
-            </h2>
-            <p className="mt-4 text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-              DOIE stands for Dynamics Of Interface Engineering. Underneath
-              every app we make is the same belief: a better interface changes
-              more than it looks like it should. Most of the friction people
-              deal with all day — a clunky lookup, a form that fights you, a
-              tool built once and never touched again — isn't a hard problem.
-              It's just one nobody got around to fixing. We got around to it.
-            </p>
+          <div className="flex items-start justify-between gap-10">
+            <div className="max-w-2xl">
+              <Kicker>Why we build</Kicker>
+              <h2 className="mt-5 text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
+                The interface is the work.
+              </h2>
+              <p className="mt-4 text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
+                DOIE stands for Dynamics Of Interface Engineering. Underneath
+                every app we make is the same belief: a better interface changes
+                more than it looks like it should. Most of the friction people
+                deal with all day — a clunky lookup, a form that fights you, a
+                tool built once and never touched again — isn't a hard problem.
+                It's just one nobody got around to fixing. We got around to it.
+              </p>
+            </div>
+            {/* Small tone-study echo of the hero motif. */}
+            <div
+              aria-hidden
+              className="hidden shrink-0 grid-cols-2 gap-2 pt-2 sm:grid"
+            >
+              {["#d3dfe5", "#84a2b1", "#4e86a0", "#2c4b60"].map((tone) => (
+                <span
+                  key={tone}
+                  className="h-9 w-9 rounded-[5px]"
+                  style={{ background: tone }}
+                />
+              ))}
+            </div>
           </div>
 
           <div className="mt-10 border-t border-[var(--color-line)]">
@@ -166,6 +205,16 @@ export default function CompanyHome() {
           <p className="mt-5 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)]">
             Snap is the first line. We're working on what comes after it.
           </p>
+          {/* One line shipped, more slots open. */}
+          <div aria-hidden className="mt-6 flex gap-2">
+            <span className="h-4 w-4 rounded-[3px] bg-[var(--color-accent)]" />
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className="h-4 w-4 rounded-[3px] border border-[var(--color-line)]"
+              />
+            ))}
+          </div>
         </div>
       </section>
 
