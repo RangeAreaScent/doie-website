@@ -48,12 +48,14 @@ export function HeroTimeline({ lang = "en" }: { lang?: Lang }) {
       lanes: ["Weather app", "Tax filing", "Client / Acme", "Newsletter"],
       labels: ["8d overdue", "deadline", "due Fri", "on track"],
       legend: ["Overdue", "This week", "On track", "Deadline ◆ · milestone ◇"],
+      aria: "Timeline of four projects, each on its own lane, read against today.",
     },
     ko: {
       today: "오늘",
       lanes: ["날씨 앱", "세금 신고", "Client / Acme", "뉴스레터"],
       labels: ["8일 지연", "마감", "금요일", "정상"],
       legend: ["지연", "이번 주", "정상", "마감 ◆ · 마일스톤 ◇"],
+      aria: "네 개의 프로젝트를 각자의 레인에 올려 오늘 기준으로 읽는 타임라인.",
     },
   }[lang];
   const lanes = [
@@ -66,7 +68,7 @@ export function HeroTimeline({ lang = "en" }: { lang?: Lang }) {
   const legendColors = [OVERDUE, SOON, NORMAL, DEADLINE];
   return (
     <div className="mx-auto w-full max-w-[460px]">
-      <svg viewBox="0 0 480 220" className="h-auto w-full" role="img" aria-label="Timeline of four projects, each on its own lane, read against today.">
+      <svg viewBox="0 0 480 220" className="h-auto w-full" role="img" aria-label={t.aria}>
         <line x1={TODAY} y1="14" x2={TODAY} y2="196" stroke={ACCENT} strokeDasharray="3 4" />
         <text x={TODAY} y="10" textAnchor="middle" className="code-mono" fontSize="9" fill={ACCENT}>
           {t.today}
@@ -349,12 +351,12 @@ export function ProgressRing({ percent = 62 }: { percent?: number }) {
    ──────────────────────────────────────────────────────────────────────── */
 export function RecurringDeadline({ lang = "en" }: { lang?: Lang }) {
   const t = {
-    en: { markDone: "MARK DONE", caption: "A missed hard deadline never quietly disappears — it stays overdue (red) until you clear it." },
-    ko: { markDone: "완료 표시", caption: "놓친 하드 마감은 조용히 사라지지 않습니다 — 지울 때까지 지연(빨강)으로 남습니다." },
+    en: { markDone: "MARK DONE", caption: "A missed hard deadline never quietly disappears — it stays overdue (red) until you clear it.", aria: "A quarterly deadline rolls forward one quarter only when you mark it done." },
+    ko: { markDone: "완료 표시", caption: "놓친 하드 마감은 조용히 사라지지 않습니다 — 지울 때까지 지연(빨강)으로 남습니다.", aria: "분기 마감은 완료 표시를 눌렀을 때만 다음 분기로 넘어갑니다." },
   }[lang];
   return (
     <div className="w-full">
-      <svg viewBox="0 0 520 120" className="h-auto w-full" role="img" aria-label="A quarterly deadline rolls forward one quarter only when you mark it done.">
+      <svg viewBox="0 0 520 120" className="h-auto w-full" role="img" aria-label={t.aria}>
         <line x1="20" y1="70" x2="500" y2="70" stroke={LINE} />
         {[110, 260, 410].map((x, i) => (
           <g key={x}>

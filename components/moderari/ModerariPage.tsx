@@ -284,7 +284,9 @@ function FeatureRow({
 export function ModerariPage({ lang }: { lang: Lang }) {
   const c = COPY[lang];
   return (
-    <main className="min-h-screen" style={brand}>
+    // Root <html> is lang="en" site-wide; mark this subtree so KO content is
+    // announced correctly (nearest lang wins) without restructuring the layout.
+    <main lang={lang} className="min-h-screen" style={brand}>
       {/* Nav */}
       <header className="sticky top-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-paper)]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
