@@ -1,7 +1,7 @@
 // All HiSS marketing-page prose. Rendered by components/hiss/HissPage.tsx.
 // Source language is English. Product / technical names stay in English by
-// design: WhisperKit, Whisper Tiny/Base/Small/Large Turbo, Enhanced,
-// Premium, AAC, TTS, iCloud, Markdown, CSV.
+// design: Apple Speech, WhisperKit, Whisper Tiny/Base/Small/Large Turbo,
+// Enhanced, Premium, AAC, TTS, iCloud, Markdown, CSV.
 
 export type Lang = "en";
 
@@ -106,7 +106,7 @@ export const COPY: Record<Lang, Copy> = {
   en: {
     metaTitle: "HiSS — Voice memos with context, on-device.",
     metaDescription:
-      "A voice recorder that speaks the date, time, and label into every take — then transcribes on-device with Whisper. Light AAC files. No account.",
+      "A voice recorder that speaks the date, time, and label into every take — then transcribes on-device with Apple Speech or Whisper. Light AAC files. No account.",
 
     navDownload: "Download",
 
@@ -120,7 +120,7 @@ export const COPY: Record<Lang, Copy> = {
 
     spec: [
       "iOS 16+",
-      "AAC · 22 kHz · 32 kbps",
+      "AAC · tuned for size & clarity",
       "≈ 140 KB / 30 s",
       "On-device transcription",
       "No account",
@@ -143,11 +143,11 @@ export const COPY: Record<Lang, Copy> = {
       },
       {
         t: "Transcription, on device",
-        b: "Whisper runs locally. Pick Tiny · Base · Small · Large Turbo. English, Korean, Japanese, Chinese, more.",
+        b: "Apple Speech runs by default — Apple manages the model, most stable (iOS 26+). Or pick Whisper (Tiny to Large Turbo) for more control. English, Korean, Japanese, Chinese, more.",
       },
       {
         t: "Multiple export formats",
-        b: "Audio, plain text, Markdown for Obsidian/Notion, CSV for spreadsheets and databases.",
+        b: "Audio, plain text, Markdown for Obsidian/Notion, CSV for spreadsheets — or copy the transcript straight to your clipboard.",
       },
       {
         t: "Light and private",
@@ -166,7 +166,7 @@ export const COPY: Record<Lang, Copy> = {
       },
       {
         t: "Transcripts you can trust, in your language",
-        b: "WhisperKit runs locally — no network call, no OpenAI account. Force English, Korean, Japanese, or Chinese for accuracy, or let it auto-detect. Long recordings save partial results if anything interrupts.",
+        b: "Apple Speech — the same on-device engine built into iOS — runs by default, with WhisperKit available as a configurable alternative. No network call, no OpenAI account. Force English, Korean, Japanese, or Chinese for accuracy, or let it auto-detect. Long recordings save partial results if anything interrupts.",
       },
       {
         t: "Voices in your language, not just English",
@@ -174,7 +174,7 @@ export const COPY: Record<Lang, Copy> = {
       },
       {
         t: "Export as audio, text, Markdown, or CSV",
-        b: "Multi-select, then pick a format. Markdown drops straight into Obsidian, Bear, or Notion with frontmatter and tags. CSV opens in Numbers or imports into a database.",
+        b: "Multi-select, then pick a format — or skip the file and copy the transcript straight to your clipboard. Markdown drops into Obsidian, Bear, or Notion with frontmatter and tags; link it from a daily note and it's just another connected part of your vault. CSV opens in Numbers or imports into a database.",
       },
     ],
 
@@ -191,7 +191,7 @@ export const COPY: Record<Lang, Copy> = {
     exKicker: "Export",
     exTitle: "Take the recording — and its text.",
     exIntro:
-      "Long-press to enter multi-select, pick a format. Audio is the m4a itself; the text formats include metadata and transcripts side-by-side.",
+      "Long-press to enter multi-select, pick a format — audio, text, Markdown, CSV, or copy straight to your clipboard. Markdown drops into your Obsidian vault ready to link from a daily note or whatever you're already working on.",
 
     stampKicker: "The stamp",
     stampTitle: "Filename dies. The voice doesn't.",
@@ -233,7 +233,7 @@ export const COPY: Record<Lang, Copy> = {
     premKicker: "Premium · $4.99",
     premTitle: "One tap unlocks the extras.",
     premIntro:
-      "The core is free forever — every recording feature, every Whisper model, TTS stamps in every language, and audio + plain-text export. Premium is the polish and the two exports that plug into your notes and data workflows.",
+      "The core is free forever — every recording feature, both transcription engines (Apple Speech and every Whisper model), TTS stamps in every language, and audio + plain-text export, including copy-to-clipboard. Premium is the polish and the two exports that plug into your notes and data workflows.",
     premBenefits: [
       {
         t: "Three additional themes",
@@ -258,7 +258,7 @@ export const COPY: Record<Lang, Copy> = {
     privKicker: "Privacy",
     privTitle: "Nothing leaves the phone unless you share it.",
     privBody:
-      "Recordings live in the app's own storage. Transcription runs locally via WhisperKit — no network call, no OpenAI account, no telemetry. If a phone call or alarm interrupts a session, the file is saved up to that point automatically.",
+      "Recordings live in the app's own storage. Transcription runs locally — via Apple Speech or WhisperKit — no network call, no OpenAI account, no telemetry. If a phone call or alarm interrupts a session, the file is saved up to that point automatically.",
 
     dlKicker: "Download",
     dlTitle: "HiSS — Life Recorder for iOS.",
