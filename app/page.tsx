@@ -3,14 +3,47 @@ import type { CSSProperties } from "react";
 import { company } from "../content/company";
 import { Kicker } from "../components/snap/Kicker";
 
-// doie.cc root — the company page. Intentionally does NOT list every app
-// (SITE_ARCHITECTURE.md §1, §10): a plain introduction, contact, and legal
-// info only. Tone v2 (plain, not grand). Anchored on the palette's slate accent
-// so the parent brand stays calm and cohesive with the app pages.
+// doie.cc root — the company page. Names each product line but does NOT list
+// Snap's full 18-app catalog (SITE_ARCHITECTURE.md §1, §10) — a plain company
+// introduction, contact, and legal info. Tone v2 (plain, not grand). Anchored
+// on the palette's slate accent so the parent brand stays calm and cohesive
+// with the app pages.
 const brand = {
   "--color-accent": "#39617A",
   "--color-accent-deep": "#2C4B60",
 } as CSSProperties;
+
+// One entry per shipped product line, in ship order. The "Our projects"
+// section renders this list plus a filled/open square per entry (see below) —
+// add a new line here and both update together, no manual square-counting.
+const projects = [
+  {
+    num: "01",
+    name: "Snap.",
+    body: "Snap is the name for a line of apps that each do one job: take a body of reference material — a code set, a set of rules — that a professional needs on hand, and put it on their phone, searchable and organized around how they actually use it. The fields differ: medicine, tax, workplace safety, aviation, and others we're still adding. The shape stays the same.",
+  },
+  {
+    num: "02",
+    name: "HiSS.",
+    body: "HiSS is a voice recorder for iOS that speaks the date, time, and a label into the start of every take, then transcribes it on-device. Built for anyone who records constantly and doesn't want to sort it out later.",
+    href: "https://hiss.doie.cc",
+    linkLabel: "hiss.doie.cc",
+  },
+  {
+    num: "03",
+    name: "Wren.",
+    body: "Wren is a management layer for learning a language with Claude on the Mac — session memory, spaced-repetition cards, and on-device speech, running on your own Claude plan.",
+    href: "https://wren.doie.cc",
+    linkLabel: "wren.doie.cc",
+  },
+  {
+    num: "04",
+    name: "Moderari.",
+    body: "Moderari is a portfolio-management app for Mac and iOS. It keeps every project you run — apps, side businesses, clients — on its own update cadence, so a glance tells you what's overdue, what's due this week, and what can wait.",
+    href: "https://moderari.doie.cc",
+    linkLabel: "moderari.doie.cc",
+  },
+];
 
 function Wordmark() {
   return (
@@ -45,14 +78,14 @@ export default function CompanyHome() {
               {company.legalName} · {company.state}
             </Kicker>
             <h1 className="mt-6 max-w-3xl text-[38px] font-medium leading-[1.05] tracking-[-0.02em] sm:text-[54px] lg:text-[60px]">
-              Small, focused apps for the codes and rules you look up all day.
+              A handful of small products, each built around one job.
             </h1>
             <p className="mt-7 max-w-xl text-[18px] leading-[1.55] text-[var(--color-ink-soft)] sm:text-[19px]">
-              We make single-purpose reference apps for professionals — in
-              medicine, tax, and workplace safety. Each one puts a body of codes
-              or rules on your phone: search it, copy what you need, and keep
-              the set you use — small things that make the day a bit easier.
-              No ads, no account.
+              DOIE is a small software company. We build a line of
+              reference-lookup apps, a voice recorder, a language tutor for
+              the Mac, and a tool for keeping every project you run on its own
+              update schedule. Different jobs, one approach: find something
+              small and specific, and build it properly.
             </p>
           </div>
 
@@ -84,16 +117,16 @@ export default function CompanyHome() {
           <div className="grid border-t border-l border-[var(--color-line)] sm:grid-cols-3">
             {[
               {
-                title: "One job each",
-                body: "A single body of codes or rules per app — no feature bloat, no dashboards to configure.",
+                title: "Ordinary jobs, a fresh angle",
+                body: "We rarely go looking for a brand-new problem. Most of what we build starts as something plain and necessary — a lookup, a recording, a lesson, a list of projects — and the work is finding our own way to do it.",
               },
               {
-                title: "Search, copy, keep",
-                body: "Look something up, copy it in a tap, and organize the handful you use into your own collections. Works offline, too.",
+                title: "A little easier, for everyone",
+                body: "Every interface we build is aimed at the same small target: make one part of someone's day a bit more convenient. That's a modest goal on purpose — it's also the whole point.",
               },
               {
-                title: "No ads, no account",
-                body: "No tracking, no ads, no sign-in. What you do in the app stays on your device.",
+                title: "Small differences, our own style",
+                body: "A small difference in how something works can add up to real convenience over time. Finding that difference, and shaping it into something distinctly ours, is the engineering we actually do.",
               },
             ].map((c, i) => (
               <div
@@ -186,31 +219,48 @@ export default function CompanyHome() {
       <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
         <div className="mx-auto max-w-4xl">
           <Kicker>Our projects</Kicker>
-          <div className="mt-7 flex items-baseline gap-4">
-            <span className="code-mono text-[15px] text-[var(--color-accent)]">
-              01
-            </span>
-            <h2 className="text-[26px] font-medium tracking-tight sm:text-[32px]">
-              Snap.
-            </h2>
+
+          <div className="mt-7 space-y-12">
+            {projects.map((p) => (
+              <div key={p.num}>
+                <div className="flex items-baseline gap-4">
+                  <span className="code-mono text-[15px] text-[var(--color-accent)]">
+                    {p.num}
+                  </span>
+                  <h2 className="text-[26px] font-medium tracking-tight sm:text-[32px]">
+                    {p.name}
+                  </h2>
+                </div>
+                <p className="mt-4 max-w-2xl text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
+                  {p.body}
+                </p>
+                {p.href && (
+                  <a
+                    href={p.href}
+                    className="mt-3 inline-block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)] underline decoration-[var(--color-line)] underline-offset-4 hover:text-[var(--color-ink)]"
+                  >
+                    {p.linkLabel} →
+                  </a>
+                )}
+              </div>
+            ))}
           </div>
-          <p className="mt-4 max-w-2xl text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-            Snap is the name for a line of apps that each do one job: take a
-            body of reference material — a code set, a set of rules — that a
-            professional needs on hand, and put it on their phone, searchable
-            and organized around how they actually use it. The fields differ:
-            medicine, tax, workplace safety, aviation, and others we're still
-            adding. The shape stays the same.
+
+          <p className="mt-12 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)]">
+            Four lines so far. We're working on what comes after them.
           </p>
-          <p className="mt-5 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)]">
-            Snap is the first line. We're working on what comes after it.
-          </p>
-          {/* One line shipped, more slots open. */}
+          {/* One filled square per shipped line, plus a couple open ones —
+              derived from `projects` so this never needs manual recounting. */}
           <div aria-hidden className="mt-6 flex gap-2">
-            <span className="h-4 w-4 rounded-[3px] bg-[var(--color-accent)]" />
-            {[0, 1, 2].map((i) => (
+            {projects.map((p) => (
               <span
-                key={i}
+                key={p.num}
+                className="h-4 w-4 rounded-[3px] bg-[var(--color-accent)]"
+              />
+            ))}
+            {[0, 1].map((i) => (
+              <span
+                key={`open-${i}`}
                 className="h-4 w-4 rounded-[3px] border border-[var(--color-line)]"
               />
             ))}
