@@ -234,19 +234,11 @@ export const COPY: Record<Lang, Copy> = {
     premKicker: "Premium · $4.99",
     premTitle: "One tap unlocks the extras.",
     premIntro:
-      "The core is free forever — every recording feature, on-device transcription with Apple Speech, TTS stamps in every language, and audio + plain-text export, including copy-to-clipboard. Premium is the polish and the two exports that plug into your notes and data workflows.",
+      "The core is free — recording, stamping, on-device transcription with Apple Speech, TTS stamps in every language, and every export format: audio, text, Markdown, CSV, or straight to your clipboard. Premium is purely the finish.",
     premBenefits: [
       {
         t: "Four additional themes",
         b: "Mono · Iris · Ember · Dusk. Alternate personalities for the same instrument.",
-      },
-      {
-        t: "Markdown export",
-        b: "One tap into Obsidian, Bear, or Notion — YAML frontmatter, H2 sections, blockquote transcripts, per-recording tags.",
-      },
-      {
-        t: "CSV export",
-        b: "Date, time, label, location, filename, transcript — one row per recording, ready for Numbers, Excel, or a database.",
       },
       {
         t: "iCloud Sync",
@@ -263,7 +255,7 @@ export const COPY: Record<Lang, Copy> = {
     dlKicker: "Download",
     dlTitle: "HiSS — Life Recorder for iOS.",
     dlBody:
-      "iOS 16 and later. Optimized for Apple Neural Engine. The core is free; premium unlocks themes, Markdown / CSV export, and iCloud sync.",
+      "iOS 16 and later. Optimized for Apple Neural Engine. The core is free; premium unlocks extra themes and iCloud sync.",
     dlDownloadLabel: "Download",
     dlRequiresLabel: "Requires",
     dlFree: "Free · Premium $4.99 one-time",
