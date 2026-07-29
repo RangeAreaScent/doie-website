@@ -1,7 +1,8 @@
 // All HiSS marketing-page prose. Rendered by components/hiss/HissPage.tsx.
 // Source language is English. Product / technical names stay in English by
-// design: Apple Speech, WhisperKit, Whisper Tiny/Base/Small/Large Turbo,
-// Enhanced, Premium, AAC, TTS, iCloud, Markdown, CSV.
+// design: Apple Speech, Enhanced, Premium, AAC, TTS, iCloud, Markdown, CSV.
+// WhisperKit ships in the app but is hidden from users (Apple Speech is the
+// sole engine on the marketing surface) — don't reintroduce it into copy.
 
 export type Lang = "en";
 
@@ -106,7 +107,7 @@ export const COPY: Record<Lang, Copy> = {
   en: {
     metaTitle: "HiSS — Voice memos with context, on-device.",
     metaDescription:
-      "A voice recorder that speaks the date, time, and label into every take — then transcribes on-device with Apple Speech or Whisper. Light AAC files. No account.",
+      "A voice recorder that speaks the date, time, and label into every take — then transcribes on-device with Apple Speech. Light AAC files. No account.",
 
     navDownload: "Download",
 
@@ -143,7 +144,7 @@ export const COPY: Record<Lang, Copy> = {
       },
       {
         t: "Transcription, on device",
-        b: "Apple Speech runs by default — Apple manages the model, most stable (iOS 26+). Or pick Whisper (Tiny to Large Turbo) for more control. English, Korean, Japanese, Chinese, more.",
+        b: "Apple Speech — the same engine built into iOS — transcribes on-device. No network call, no account. English, Korean, Japanese, Chinese.",
       },
       {
         t: "Multiple export formats",
@@ -158,7 +159,7 @@ export const COPY: Record<Lang, Copy> = {
     featKicker: "Features",
     featTitle: "Built like an instrument, not an app you swipe past.",
     featIntro:
-      "The whole app follows one rule — every screen must answer a real recording question. Duration. Label. Location. Language. Model. Nothing decorative.",
+      "The whole app follows one rule — every screen must answer a real recording question. Duration. Label. Location. Language. Nothing decorative.",
     features: [
       {
         t: "Instant capture with stamped context",
@@ -166,7 +167,7 @@ export const COPY: Record<Lang, Copy> = {
       },
       {
         t: "Transcripts you can trust, in your language",
-        b: "Apple Speech — the same on-device engine built into iOS — runs by default, with WhisperKit available as a configurable alternative. No network call, no OpenAI account. Force English, Korean, Japanese, or Chinese for accuracy, or let it auto-detect. Long recordings save partial results if anything interrupts.",
+        b: "Apple Speech — the same on-device engine built into iOS — turns every recording into text. No network call, no account. Force English, Korean, Japanese, or Chinese for accuracy, or let it auto-detect. Long recordings save partial results if anything interrupts.",
       },
       {
         t: "Voices in your language, not just English",
@@ -233,11 +234,11 @@ export const COPY: Record<Lang, Copy> = {
     premKicker: "Premium · $4.99",
     premTitle: "One tap unlocks the extras.",
     premIntro:
-      "The core is free forever — every recording feature, both transcription engines (Apple Speech and every Whisper model), TTS stamps in every language, and audio + plain-text export, including copy-to-clipboard. Premium is the polish and the two exports that plug into your notes and data workflows.",
+      "The core is free forever — every recording feature, on-device transcription with Apple Speech, TTS stamps in every language, and audio + plain-text export, including copy-to-clipboard. Premium is the polish and the two exports that plug into your notes and data workflows.",
     premBenefits: [
       {
-        t: "Three additional themes",
-        b: "Mono · Iris · Ember. Alternate personalities for the same instrument.",
+        t: "Four additional themes",
+        b: "Mono · Iris · Ember · Dusk. Alternate personalities for the same instrument.",
       },
       {
         t: "Markdown export",
@@ -250,7 +251,6 @@ export const COPY: Record<Lang, Copy> = {
       {
         t: "iCloud Sync",
         b: "Your recordings and transcripts on every device signed into your Apple ID.",
-        badge: "Coming soon",
       },
     ],
     premFree: "One-time $4.99. No subscription. No account.",
@@ -258,7 +258,7 @@ export const COPY: Record<Lang, Copy> = {
     privKicker: "Privacy",
     privTitle: "Nothing leaves the phone unless you share it.",
     privBody:
-      "Recordings live in the app's own storage. Transcription runs locally — via Apple Speech or WhisperKit — no network call, no OpenAI account, no telemetry. If a phone call or alarm interrupts a session, the file is saved up to that point automatically.",
+      "Recordings live in the app's own storage. Transcription runs locally via Apple Speech — no network call, no account, no telemetry. If a phone call or alarm interrupts a session, the file is saved up to that point automatically.",
 
     dlKicker: "Download",
     dlTitle: "HiSS — Life Recorder for iOS.",

@@ -33,9 +33,9 @@ const SLIDES: Slide[] = [
   },
   {
     label: "Settings",
-    title: "Pick the model, the voice, the language.",
+    title: "Pick the voice, the language, the theme.",
     body:
-      "Whisper Tiny · Base · Small · Large Turbo. Enhanced or Premium iOS voices. Stamp language and transcription language chosen independently.",
+      "Enhanced or Premium iOS voices for the stamp. Stamp language and transcription language chosen independently.",
   },
 ];
 

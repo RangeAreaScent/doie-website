@@ -189,7 +189,7 @@ export function HeroRecording() {
         date, time, and label straight into the file,
       </text>
       <text x="24" y="366" fill="#E0E0DC" fontFamily="var(--font-sans)" fontSize="14">
-        then Whisper writes the transcript."
+        then Apple Speech writes the transcript."
       </text>
     </svg>
   );
@@ -366,7 +366,7 @@ export function StampFlow() {
 
 /* ─────────────────────────────────────────────────────────────
    TranscribeQuality — audio → text in three languages,
-   showing that on-device Whisper actually produces good output.
+   showing that on-device Apple Speech actually produces good output.
    ─────────────────────────────────────────────────────────── */
 export function TranscribeQuality() {
   const rows = [
@@ -419,7 +419,7 @@ export function TranscribeQuality() {
       ))}
       <div className="border-b border-r border-[var(--color-line)] px-6 py-3">
         <p className="code-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-ink-soft)]">
-          Whisper · on-device · no network call
+          Apple Speech · on-device · no network call
         </p>
       </div>
     </div>
@@ -529,7 +529,7 @@ export function PipelineDiagram() {
     { n: "01", t: "REC", b: "Mic + TTS stamp start in parallel." },
     { n: "02", t: "Merge", b: "TTS head + mic tail → single PCM." },
     { n: "03", t: "AAC", b: "22 kHz mono, 32 kbps. ≈ 140 KB / 30 s." },
-    { n: "04", t: "Transcribe", b: "Whisper on-device (optional)." },
+    { n: "04", t: "Transcribe", b: "Apple Speech on-device (optional)." },
   ];
   return (
     <div className="grid border-t border-l border-[var(--color-line)] sm:grid-cols-4">
