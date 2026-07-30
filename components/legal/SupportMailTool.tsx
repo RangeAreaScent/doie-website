@@ -15,9 +15,12 @@ export function SupportMailTool() {
   const [message, setMessage] = useState("");
 
   const mailtoHref = useMemo(() => {
-    const params = new URLSearchParams({ subject: `Support: ${app}` });
-    if (message.trim()) params.set("body", message);
-    return `mailto:${company.supportEmail}?${params.toString()}`;
+    // mailto: links need RFC 3986 percent-encoding (%20 for spaces) per RFC
+    // 6068 — URLSearchParams encodes spaces as "+" (form-urlencoded), which
+    // mail clients don't decode back, so build the query string by hand.
+    const parts = [`subject=${encodeURIComponent(`Support: ${app}`)}`];
+    if (message.trim()) parts.push(`body=${encodeURIComponent(message)}`);
+    return `mailto:${company.supportEmail}?${parts.join("&")}`;
   }, [app, message]);
 
   return (
