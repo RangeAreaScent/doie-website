@@ -171,13 +171,11 @@ export function companySupport(): LegalDoc {
   return {
     title: "Support",
     updated: LAST_UPDATED,
-    intro: `Get in touch with ${company.legalName}.`,
+    intro: `Get in touch with ${company.legalName}. Each Snap app has its own support page, linked from its download page — this page covers our other products. Pick what you're writing about below and it'll open as a pre-filled email in your own mail app.`,
     sections: [
       {
-        heading: "Email",
-        paragraphs: [
-          `For help with any of our apps or general inquiries, email ${company.supportEmail}. If your question is about a specific app, please name it and include your device and OS version.`,
-        ],
+        heading: "Prefer to email directly?",
+        paragraphs: [`Reach us any time at ${company.supportEmail}.`],
       },
     ],
   };

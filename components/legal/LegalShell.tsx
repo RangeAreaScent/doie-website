@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 export interface LegalSection {
   heading: string;
@@ -15,6 +16,7 @@ export function LegalShell({
   backHref,
   intro,
   sections,
+  children,
 }: {
   title: string;
   updated: string;
@@ -22,6 +24,8 @@ export function LegalShell({
   backHref: string;
   intro?: string;
   sections: LegalSection[];
+  /** Optional extra content rendered between the intro and the sections — e.g. the support page's mail tool. */
+  children?: ReactNode;
 }) {
   return (
     <main className="min-h-screen px-6 py-16">
@@ -43,6 +47,8 @@ export function LegalShell({
             {intro}
           </p>
         )}
+
+        {children}
 
         <div className="mt-10 space-y-8">
           {sections.map((s) => (
