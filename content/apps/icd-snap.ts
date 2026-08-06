@@ -187,7 +187,11 @@ export const icdSnap: AppContent = {
       channel: "direct",
       url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.0/ICD.Snap_1.0.0_universal.dmg",
     },
-    { platform: "Windows", channel: "microsoft-store" },
+    {
+      platform: "Windows",
+      channel: "direct",
+      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.1/ICD.Snap_1.0.1_x64-setup.exe",
+    },
   ],
 
   seo: {
