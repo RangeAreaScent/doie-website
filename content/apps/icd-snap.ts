@@ -182,7 +182,11 @@ export const icdSnap: AppContent = {
 
   downloads: [
     { platform: "iOS", channel: "app-store" },
-    { platform: "macOS", channel: "mac-app-store" },
+    {
+      platform: "macOS",
+      channel: "direct",
+      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.0/ICD.Snap_1.0.0_universal.dmg",
+    },
     { platform: "Windows", channel: "microsoft-store" },
   ],
 
