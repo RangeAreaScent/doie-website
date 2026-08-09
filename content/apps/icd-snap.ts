@@ -185,12 +185,12 @@ export const icdSnap: AppContent = {
     {
       platform: "macOS",
       channel: "direct",
-      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.0/ICD.Snap_1.0.0_universal.dmg",
+      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.2/ICD.Snap_1.0.2_universal.dmg",
     },
     {
       platform: "Windows",
       channel: "direct",
-      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.1/ICD.Snap_1.0.1_x64-setup.exe",
+      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.2/ICD.Snap_1.0.2_x64-setup.exe",
     },
   ],
 
