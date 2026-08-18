@@ -6,7 +6,12 @@ export function Nav({ name, monogram }: { name: string; monogram: string }) {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-2.5">
           <AppIcon monogram={monogram} size={26} />
-          <span className="text-[15px] font-medium tracking-tight">{name}</span>
+          <span
+            className="text-[16px] font-bold tracking-tight"
+            style={{ fontFamily: "var(--font-barlow-sc)" }}
+          >
+            {name}
+          </span>
         </a>
         <nav className="hidden gap-8 font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--color-ink-soft)] sm:flex">
           <a href="#features" className="hover:text-[var(--color-ink)]">

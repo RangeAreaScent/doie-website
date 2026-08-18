@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, IBM_Plex_Mono, IBM_Plex_Sans_KR } from "next/font/google";
+import {
+  Space_Grotesk,
+  IBM_Plex_Mono,
+  IBM_Plex_Sans_KR,
+  Barlow_Semi_Condensed,
+} from "next/font/google";
 import { company } from "../content/company";
 import "./globals.css";
 
@@ -16,6 +21,17 @@ const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-mono-plex",
+  display: "swap",
+});
+
+// Snap wordmark font (Nav.tsx app-name text) — bold-only, semi-condensed
+// display face, distinct from the Space Grotesk body/heading font on purpose
+// (a logotype, not a heading). Only weight 700 loaded since that's the only
+// weight the wordmark uses.
+const barlowSemiCondensed = Barlow_Semi_Condensed({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-barlow-sc",
   display: "swap",
 });
 
@@ -61,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${grotesk.variable} ${mono.variable} ${sansKr.variable}`}
+      className={`${grotesk.variable} ${mono.variable} ${sansKr.variable} ${barlowSemiCondensed.variable}`}
     >
       <body>{children}</body>
     </html>
