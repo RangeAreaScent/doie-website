@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { AppContent } from "../../content/types";
 import { Kicker } from "./Kicker";
 
-// Region selector for region-picker apps (tax / tariff / aero): a mono tab
+// Region selector for region-picker apps (tax / tariff / hangar): a mono tab
 // strip picks a region, and a hairline card shows that region's authority, key
 // dataset numbers, region-specific note, pack size, and license. Client
 // component because the tab selection is interactive. Only rendered when an app

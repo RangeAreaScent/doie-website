@@ -25,7 +25,7 @@ export interface Download {
 export type Family =
   | "tax-snap"
   | "chem-safety"
-  | "aero-snap"
+  | "hangar-snap"
   | "tariff-snap";
 
 export interface Brand {
@@ -99,7 +99,7 @@ export interface AppContent {
     shots: Screenshot[]; // 2–3
   };
   /**
-   * Optional "Regions" band for region-picker apps (tax / tariff / aero) — an
+   * Optional "Regions" band for region-picker apps (tax / tariff / hangar) — an
    * in-app region selector rendered as a tab strip plus a per-region card
    * (authority, key dataset numbers, region-specific features, pack size,
    * license). Omit for single-region apps (the section won't render).

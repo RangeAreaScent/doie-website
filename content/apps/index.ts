@@ -16,7 +16,7 @@ import { drugSnap } from "./drug-snap";
 import { medbillSnap } from "./medbill-snap";
 import { taxSnap } from "./tax-snap";
 import { tariffSnap } from "./tariff-snap";
-import { aeroSnap } from "./aero-snap";
+import { hangarSnap } from "./hangar-snap";
 
 // The registry — the real source of truth for which apps exist (the table in
 // SITE_ARCHITECTURE.md §7 is just a snapshot). Add an app by importing its
@@ -39,7 +39,7 @@ const registry: AppContent[] = [
   medbillSnap,
   taxSnap,
   tariffSnap,
-  aeroSnap,
+  hangarSnap,
 ];
 
 /** slug → AppContent, for O(1) route lookups. */
