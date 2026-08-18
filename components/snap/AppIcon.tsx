@@ -14,8 +14,12 @@ export function AppIcon({
       style={{ width: size, height: size }}
     >
       <span
-        className="code-mono font-bold"
-        style={{ fontSize: size * 0.42, letterSpacing: "-0.02em" }}
+        className="font-bold"
+        style={{
+          fontFamily: "var(--font-barlow-sc)",
+          fontSize: size * 0.42,
+          letterSpacing: "-0.02em",
+        }}
       >
         {monogram}
       </span>

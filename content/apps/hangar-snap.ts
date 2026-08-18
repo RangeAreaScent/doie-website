@@ -212,7 +212,7 @@ export const hangarSnap: AppContent = {
   brand: {
     accent: "#39617A",
     accentDeep: "#2C4B60",
-    monogram: "ha",
+    monogram: "HS",
   },
 
   downloads: [
