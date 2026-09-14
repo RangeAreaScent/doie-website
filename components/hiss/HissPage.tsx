@@ -23,6 +23,8 @@ const brand = {
   "--color-accent-deep": "#C33818",
 } as CSSProperties;
 
+const APP_STORE_URL = "https://apps.apple.com/app/hiss-recorder/id6796030377";
+
 /* Real HiSS icon — squared full-bleed, macOS-tile rounded with hairline. */
 function HissMark({ size = 28 }: { size?: number }) {
   return (
@@ -118,7 +120,9 @@ export function HissPage({
             <span className="text-[15px] font-medium tracking-tight">HiSS</span>
           </Link>
           <a
-            href="#download"
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-md border border-[var(--color-ink)] px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.1em] transition hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)]"
           >
             {c.navDownload}
@@ -144,7 +148,9 @@ export function HissPage({
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <a
-                  href="#download"
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-md bg-[var(--color-ink)] px-5 py-3 code-mono text-[13px] uppercase tracking-[0.08em] text-[var(--color-paper)] transition hover:brightness-125"
                 >
                   {c.ctaDownload}
@@ -406,7 +412,12 @@ export function HissPage({
             {c.dlBody}
           </p>
           <div className="mt-9 grid max-w-lg gap-px border-t border-l border-[var(--color-line)] sm:grid-cols-2">
-            <div className="flex items-center justify-between border-b border-r border-[var(--color-line)] bg-[var(--color-ink)] px-5 py-4 text-[var(--color-paper)]">
+            <a
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between border-b border-r border-[var(--color-line)] bg-[var(--color-ink)] px-5 py-4 text-[var(--color-paper)] transition hover:brightness-125"
+            >
               <div>
                 <div className="code-mono text-[10px] uppercase tracking-[0.12em] opacity-70">
                   {c.dlDownloadLabel}
@@ -416,7 +427,7 @@ export function HissPage({
               <span className="code-mono text-[11px] uppercase tracking-[0.1em] opacity-70">
                 App Store
               </span>
-            </div>
+            </a>
             <div className="flex items-center justify-between border-b border-r border-[var(--color-line)] px-5 py-4">
               <div>
                 <div className="code-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink-soft)]">
