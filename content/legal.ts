@@ -16,6 +16,7 @@ export interface LegalDoc {
 }
 
 export function appPrivacy(app: AppContent): LegalDoc {
+  if (app.slug === "hangar-snap") return hangarSnapPrivacy();
   return {
     title: "Privacy Policy",
     updated: LAST_UPDATED,
@@ -53,6 +54,74 @@ export function appPrivacy(app: AppContent): LegalDoc {
         heading: "Contact",
         paragraphs: [
           `Questions about this policy? Email ${company.supportEmail}.`,
+        ],
+      },
+    ],
+  };
+}
+
+// Hangar Snap override — ported from the real PRIVACY.md in the app's own
+// repo (github.com/RangeAreaScent/Aero-Snap — not yet renamed there), which
+// documents actual on-device storage in more detail than the generic
+// template above. That source doc predates the FAA+EASA merge, so the EASA/EU
+// data-attribution paragraph here is added fresh to match the app as it
+// actually ships today; everything else is carried over faithfully.
+function hangarSnapPrivacy(): LegalDoc {
+  return {
+    title: "Privacy Policy",
+    updated: LAST_UPDATED,
+    intro: `Hangar Snap is built by ${company.legalName} (${company.state}) to be fully offline and tracking-free. This page exists because the App Store requires every app to publish a privacy policy, even one this short.`,
+    sections: [
+      {
+        heading: "What we collect",
+        paragraphs: [
+          "Hangar Snap does not collect, transmit, or store any personal information on any server. It does not use analytics, advertising, tracking, or third-party SDKs of any kind, and it does not require an account.",
+        ],
+      },
+      {
+        heading: "What's stored on your device",
+        paragraphs: [
+          "The app keeps a few things in local storage: the FAA ADs and EASA sections you favorite, your per-tail \"My Aircraft\" collections and folders, the notes and compliance status you attach to entries, and app preferences like theme and citation style.",
+          "This data is never sent off the device — there's no sync, no cloud backup managed by the app, and no telemetry. Removing the app removes this data.",
+        ],
+      },
+      {
+        heading: "What we don't do",
+        paragraphs: [
+          "No analytics framework, no advertising SDKs, and no tracking identifiers requested or used. No crash-reporting SDK that uploads data — only Apple's own anonymous, opt-in crash reports, which Apple manages, not us. No remote configuration, A/B testing, or feature flags, and no third-party fonts or web calls.",
+          "The only network access the app makes is the optional in-app purchase (Apple StoreKit) and links you tap yourself — to the Federal Register, an official FAA PDF, or an EASA source page. Those open in your browser and are governed by its privacy settings, not ours.",
+        ],
+      },
+      {
+        heading: "The Supporter unlock",
+        paragraphs: [
+          "The optional one-time Supporter purchase runs through Apple StoreKit. Apple receives the standard purchase transaction; we receive only a confirmation that it happened — never your Apple ID, payment method, or billing address.",
+          "The purchase is entirely optional. The core app — search across both authorities, favorites, collections, notes, and PDF/CSV export — is fully free with no time limits. The purchase only unlocks the accent-color themes and matching app icons.",
+        ],
+      },
+      {
+        heading: "Exported files",
+        paragraphs: [
+          "PDF and CSV exports are written to your device and handed to the system share sheet. From there you decide who sees the file — Mail, AirDrop, your own files, your shop's software. Hangar Snap does not upload exports anywhere.",
+        ],
+      },
+      {
+        heading: "Data source & attribution",
+        paragraphs: [
+          "US data — FAA Airworthiness Directives (Federal Register), 14 CFR (eCFR), Type Certificate Data Sheets (DRS), and Advisory Circulars — is public domain works of the US Federal Government under 17 U.S.C. § 105.",
+          "EU data — EASA Easy Access Rules and TCDS — is reused under Commission Decision 2011/833/EU. Both datasets are bundled as offline snapshots for fast lookup; the in-app source links point at the authoritative live document, not a substitute for it. Hangar Snap is not affiliated with the FAA or EASA.",
+        ],
+      },
+      {
+        heading: "Children's privacy",
+        paragraphs: [
+          "Hangar Snap is designed for aviation maintenance professionals — US A&P mechanics, IAs, and owners/operators, and EU Part-66 engineers, Part-145 organisations, and CAMO staff. It is not directed at children under 13 and does not knowingly collect information from them.",
+        ],
+      },
+      {
+        heading: "Contact",
+        paragraphs: [
+          `Questions about this policy? Email ${company.supportEmail}. If you want to see what the app actually does under the hood, the source is at github.com/RangeAreaScent/Aero-Snap.`,
         ],
       },
     ],
