@@ -10,11 +10,10 @@ import { hcpcsSnap } from "./hcpcs-snap";
 import { naicsSnap } from "./naics-snap";
 import { dotSnap } from "./dot-snap";
 import { labcodeSnap } from "./labcode-snap";
-import { irsSnap } from "./irs-snap";
 import { ehsSnap } from "./ehs-snap";
 import { drugSnap } from "./drug-snap";
 import { medbillSnap } from "./medbill-snap";
-import { taxSnap } from "./tax-snap";
+import { taxLawSnap } from "./tax-law-snap";
 import { tariffSnap } from "./tariff-snap";
 import { hangarSnap } from "./hangar-snap";
 
@@ -33,11 +32,10 @@ const registry: AppContent[] = [
   naicsSnap,
   dotSnap,
   labcodeSnap,
-  irsSnap,
   ehsSnap,
   drugSnap,
   medbillSnap,
-  taxSnap,
+  taxLawSnap,
   tariffSnap,
   hangarSnap,
 ];

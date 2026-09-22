@@ -14,6 +14,25 @@ const nextConfig = {
   images: {
     qualities: [75, 90],
   },
+  // Tax Snap renamed to Tax Law Snap (2026-09-22) and IRS Snap folded into it
+  // as the US region. The native iOS app's AppLinks.privacyPolicy and its
+  // already-live App Store Connect "Privacy Policy URL" both hardcode the old
+  // /snap/tax-snap/privacy path, so these redirects keep that link working
+  // without needing a new app build.
+  async redirects() {
+    return [
+      {
+        source: "/snap/tax-snap/:path*",
+        destination: "/snap/tax-law-snap/:path*",
+        permanent: true,
+      },
+      {
+        source: "/snap/irs-snap/:path*",
+        destination: "/snap/tax-law-snap/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
