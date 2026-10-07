@@ -5,6 +5,8 @@ export interface LegalSection {
   heading: string;
   /** Each string renders as its own paragraph. */
   paragraphs: string[];
+  /** Optional outbound links, listed after the paragraphs. */
+  links?: { label: string; href: string }[];
 }
 
 // Minimal document shell shared by every privacy / terms / support page,
@@ -64,6 +66,20 @@ export function LegalShell({
                   {p}
                 </p>
               ))}
+              {s.links && (
+                <ul className="mt-3 space-y-1.5 text-[15px] leading-[1.65]">
+                  {s.links.map((l) => (
+                    <li key={l.href}>
+                      <a
+                        href={l.href}
+                        className="text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-ink)]"
+                      >
+                        {l.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </section>
           ))}
         </div>
