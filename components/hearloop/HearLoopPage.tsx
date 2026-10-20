@@ -11,45 +11,61 @@ const brand = {
   "--color-accent-deep": "#235F65",
 } as CSSProperties;
 
-const STEPS = [
+const USES = [
   {
-    t: "Import",
-    b: "Bring in a speech recording from the Files app or the share sheet. Podcasts, lectures, interviews, language lessons.",
+    t: "Language learning",
+    b: "Listen, repeat and shadow native speech.",
   },
   {
-    t: "Split",
-    b: "HearLoop finds the silences and cuts the recording into sentences, so every sentence is its own unit.",
+    t: "Interview practice",
+    b: "Replay your answers and polish how you say them.",
   },
   {
-    t: "Loop",
-    b: "Jump to the previous or next sentence, repeat the current one, and read along with the word being spoken highlighted.",
+    t: "Lectures, talks and meetings",
+    b: "Review what matters, sentence by sentence.",
+  },
+  {
+    t: "Anything else",
+    b: "Anything you want to hear again and again until it sticks.",
   },
 ];
 
-const FEATURES = [
+const BLOCKS = [
   {
-    t: "Sentence by sentence",
-    b: "Skip back one sentence instead of scrubbing a timeline. Repeat it as many times as you need.",
+    t: "Repeat, automatically",
+    items: [
+      "Sentences are found for you from the pauses in the speech.",
+      "Jump to the previous or next sentence with one big button.",
+      "Loop the current sentence as many times as you need.",
+    ],
   },
   {
-    t: "Shadowing pause",
-    b: "A silent gap after each sentence, so you can say it aloud before the next one starts.",
+    t: "Shadowing made easy",
+    items: [
+      "After every sentence, playback waits so you can speak it back.",
+      "Auto mode sizes the pause to the sentence you just heard, or pick 3 to 15 seconds.",
+      "Turn it on and off in one tap.",
+    ],
   },
   {
-    t: "Star sentences",
-    b: "Mark the sentences worth coming back to and find them again later.",
+    t: "Read along",
+    items: [
+      "See the transcript with the current word highlighted as it plays.",
+      "Transcription runs on your device. Your audio never leaves your iPhone. Requires iOS 26 or later.",
+    ],
   },
   {
-    t: "Live transcript",
-    b: "Follow the transcript with the current word highlighted as it plays.",
+    t: "Star what matters",
+    items: ["Star the hard sentences and practice only those."],
   },
   {
-    t: "Background and car controls",
-    b: "Keeps playing with the screen off. The previous and next buttons in your car move by sentence.",
-  },
-  {
-    t: "Apple Watch remote",
-    b: "The watch app controls the iPhone: previous, next, and repeat from your wrist.",
+    t: "Made for real life",
+    items: [
+      "Large buttons and haptic feedback, easy to use with one hand.",
+      "Keeps playing with the screen locked and in the background.",
+      "Car and headphone previous and next buttons jump by sentence.",
+      "Apple Watch remote for play, pause, previous and next, so you can repeat sentences from your wrist.",
+    ],
   },
 ];
 
@@ -145,8 +161,8 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
             <span className="text-[15px] font-medium tracking-tight">HearLoop</span>
           </Link>
           <nav className="flex items-center gap-6 font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--color-ink-soft)]">
-            <a href="#how" className="hidden hover:text-[var(--color-ink)] sm:inline">
-              How it works
+            <a href="#features" className="hidden hover:text-[var(--color-ink)] sm:inline">
+              Features
             </a>
             <Link href={`${prefix}/support`} className="hover:text-[var(--color-ink)]">
               Support
@@ -158,14 +174,17 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
       <section className="border-b border-[var(--color-line)] px-6 pt-20 pb-20 sm:pt-28 sm:pb-24">
         <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
           <div>
-            <Kicker>iPhone · Apple Watch · Audio player</Kicker>
+            <Kicker>iPhone · Audio player</Kicker>
             <h1 className="mt-6 text-[40px] font-medium leading-[1.04] tracking-[-0.02em] sm:text-[56px]">
-              Review speech audio, one sentence at a time.
+              Repetition is how you learn. HearLoop makes it effortless.
             </h1>
-            <p className="mt-7 max-w-xl text-[18px] leading-[1.55] text-[var(--color-ink-soft)]">
-              HearLoop splits a recording into sentences by its silences. Go back one
-              sentence, repeat it, pause to say it aloud, and read the transcript as
-              it plays. Everything happens on your device.
+            <p className="mt-6 font-mono text-[14px] uppercase tracking-[0.12em] text-[var(--color-accent)]">
+              Repeat. Shadow. Learn faster.
+            </p>
+            <p className="mt-6 max-w-xl text-[18px] leading-[1.55] text-[var(--color-ink-soft)]">
+              Practice any recording by repeating it sentence by sentence while you
+              read along. HearLoop finds the sentences, repeats them, and adds
+              shadowing pauses for you.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <span className="inline-flex items-center rounded-md border border-[var(--color-line)] px-5 py-3 code-mono text-[13px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)]">
@@ -182,21 +201,21 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
         </div>
       </section>
 
-      <section id="how" className="border-b border-[var(--color-line)] px-6 py-20 sm:py-24">
+      <section className="border-b border-[var(--color-line)] px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl">
-          <Kicker>How it works</Kicker>
+          <Kicker>Perfect for</Kicker>
           <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
-            Import, split, loop.
+            Any recording you want to practice.
           </h2>
-          <div className="mt-10 grid border-t border-l border-[var(--color-line)] sm:grid-cols-3">
-            {STEPS.map((s, i) => (
-              <div key={s.t} className="border-b border-r border-[var(--color-line)] p-8">
+          <div className="mt-10 grid border-t border-l border-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+            {USES.map((u, i) => (
+              <div key={u.t} className="border-b border-r border-[var(--color-line)] p-8">
                 <div className="code-mono text-[13px] text-[var(--color-accent)]">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="mt-4 text-[20px] font-medium tracking-tight">{s.t}</h3>
+                <h3 className="mt-4 text-[18px] font-medium tracking-tight">{u.t}</h3>
                 <p className="mt-2 text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
-                  {s.b}
+                  {u.b}
                 </p>
               </div>
             ))}
@@ -204,19 +223,29 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
         </div>
       </section>
 
-      <section className="border-b border-[var(--color-line)] px-6 py-20 sm:py-24">
+      <section id="features" className="border-b border-[var(--color-line)] px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <Kicker>Features</Kicker>
           <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
             Built for repeating what you hear.
           </h2>
-          <div className="mt-10 grid border-t border-l border-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((f) => (
-              <div key={f.t} className="border-b border-r border-[var(--color-line)] p-8">
-                <h3 className="text-[18px] font-medium tracking-tight">{f.t}</h3>
-                <p className="mt-2 text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
-                  {f.b}
-                </p>
+          <div className="mt-10 border-t border-[var(--color-line)]">
+            {BLOCKS.map((blk, i) => (
+              <div
+                key={blk.t}
+                className="grid gap-2 border-b border-[var(--color-line)] py-8 sm:grid-cols-[88px_1fr] sm:gap-8"
+              >
+                <div className="code-mono text-[13px] text-[var(--color-accent)]">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div>
+                  <h3 className="text-[20px] font-medium tracking-tight">{blk.t}</h3>
+                  <ul className="mt-3 max-w-2xl space-y-2 text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
+                    {blk.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
@@ -225,14 +254,14 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
 
       <section className="border-b border-[var(--color-line)] px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-4xl">
-          <Kicker>Privacy</Kicker>
+          <Kicker>Simple, private and free</Kicker>
           <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
-            Your audio stays on your device.
+            No account. No ads. No tracking.
           </h2>
           <p className="mt-4 max-w-2xl text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-            You import the files, and nothing is uploaded anywhere. Transcription uses
-            Apple&rsquo;s Speech framework on your device, and HearLoop has no server.
-            There is no account, no analytics, no ads, and no third-party SDKs.
+            No subscription either. Your files stay on your device, and nothing is
+            uploaded anywhere. Transcription uses Apple&rsquo;s Speech framework on
+            your device, and HearLoop has no server.
           </p>
           <Link
             href={`${prefix}/privacy`}

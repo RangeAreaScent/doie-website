@@ -3,9 +3,9 @@ import { headers } from "next/headers";
 import { HearLoopPage } from "../../components/hearloop/HearLoopPage";
 
 // Canonical origin is hearloop.doie.cc; middleware 308s doie.cc/hearloop/* here.
-const TITLE = "HearLoop: review speech audio one sentence at a time";
+const TITLE = "HearLoop: repeat, shadow, learn faster";
 const DESCRIPTION =
-  "HearLoop splits speech recordings into sentences by their silences. Go back a sentence, repeat it, pause to shadow it aloud, and follow the transcript. On iPhone and Apple Watch, all on your device.";
+  "Turn any recording into practice. HearLoop splits speech into sentences, repeats them and adds shadowing pauses for you. Simple, effective and free.";
 
 export const metadata: Metadata = {
   title: TITLE,
