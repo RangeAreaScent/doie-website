@@ -45,12 +45,6 @@ export default function Page() {
           ],
         },
         {
-          heading: "Apple Watch",
-          paragraphs: [
-            "The Apple Watch app is a remote control for the HearLoop app on your iPhone. It does not collect data.",
-          ],
-        },
-        {
           heading: "Third parties",
           paragraphs: [
             "Your data is not shared with anyone, because we do not collect it. HearLoop includes no third-party code that collects data. The app is distributed through the Apple App Store, whose own terms govern the download.",

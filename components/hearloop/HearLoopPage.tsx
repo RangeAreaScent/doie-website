@@ -64,7 +64,6 @@ const BLOCKS = [
       "Large buttons and haptic feedback, easy to use with one hand.",
       "Keeps playing with the screen locked and in the background.",
       "Car and headphone previous and next buttons jump by sentence.",
-      "Apple Watch remote for play, pause, previous and next, so you can repeat sentences from your wrist.",
     ],
   },
 ];

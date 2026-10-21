@@ -4,7 +4,7 @@ import { company } from "../../../content/company";
 
 export const metadata: Metadata = {
   title: "HearLoop: Support",
-  description: "Help with HearLoop, the sentence-by-sentence speech audio player for iPhone and Apple Watch.",
+  description: "Help with HearLoop, the sentence-by-sentence speech audio player for iPhone.",
   alternates: { canonical: "https://hearloop.doie.cc/support" },
 };
 
@@ -17,7 +17,7 @@ export default function Page() {
       updated={UPDATED}
       backLabel="Back to HearLoop"
       backHref="/"
-      intro="HearLoop is a sentence-by-sentence player for reviewing speech audio, on iPhone and Apple Watch. It's built by DOIE LLC. We read every message."
+      intro="HearLoop is a sentence-by-sentence player for reviewing speech audio, on iPhone. It's built by DOIE LLC. We read every message."
       sections={[
         {
           heading: "Contact",
@@ -38,18 +38,13 @@ export default function Page() {
           heading: "How does the shadowing pause work?",
           paragraphs: [
             "After each sentence, HearLoop can leave a silent gap so you can repeat the sentence aloud before the next one starts.",
+            "The pause can be Off, Auto (sized to the sentence you just heard), or a fixed 3, 5, 7, 10, or 15 seconds. Set it in Settings (the gear icon). There is also a quick On/Off button on the main screen.",
           ],
         },
         {
           heading: "Does it work in the background and in the car?",
           paragraphs: [
             "Yes. Playback continues in the background, and the previous and next buttons in your car move by sentence.",
-          ],
-        },
-        {
-          heading: "What does the Apple Watch app do?",
-          paragraphs: [
-            "It is a remote control for the HearLoop app on your iPhone. The audio plays on the iPhone.",
           ],
         },
         {
