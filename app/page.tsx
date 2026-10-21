@@ -4,6 +4,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { company } from "../content/company";
 import { Kicker } from "../components/snap/Kicker";
 import { AppCarousel } from "../components/company/AppCarousel";
+import { HeaderNav } from "../components/company/HeaderNav";
 
 // doie.cc root: the company page. A hairline product grid (direction B from the
 // 2026-10 redesign mockups) introduces each product; on phones it becomes a
@@ -364,23 +365,7 @@ export default function CompanyHome() {
               className="h-8 w-[69px] shrink-0"
             />
           </Link>
-          <nav
-            aria-label="Primary"
-            className="flex items-center gap-5 font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--color-ink-soft)] sm:gap-7"
-          >
-            <a href="#apps" className={`hidden hover:text-[var(--color-ink)] sm:inline ${FOCUS}`}>
-              Products
-            </a>
-            <a href="#principles" className={`hidden hover:text-[var(--color-ink)] sm:inline ${FOCUS}`}>
-              Principles
-            </a>
-            <a
-              href="#contact"
-              className={`inline-flex min-h-11 items-center rounded-md border border-[var(--color-accent)] px-3.5 text-[var(--color-ink)] transition hover:bg-[var(--color-accent)] hover:text-white ${FOCUS}`}
-            >
-              Contact
-            </a>
-          </nav>
+          <HeaderNav />
         </div>
       </header>
 
