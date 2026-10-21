@@ -26,6 +26,7 @@ type Copy = {
 
   // Hero
   heroKicker: string;
+  heroSlogan: string[];
   heroTitleA: string;
   heroTitleB: string;
   heroSub: string;
@@ -112,6 +113,7 @@ export const COPY: Record<Lang, Copy> = {
     navDownload: "Download",
 
     heroKicker: "iOS · Voice recorder",
+    heroSlogan: ["Press.", "Record.", "Stamped.", "Organized."],
     heroTitleA: "Every take,",
     heroTitleB: "already labeled.",
     heroSub:

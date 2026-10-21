@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Bebas_Neue } from "next/font/google";
 import type { CSSProperties } from "react";
 import { company } from "../../content/company";
 import { Kicker } from "../snap/Kicker";
 import { COPY, type Lang } from "../../content/hiss-copy";
 import {
-  HeroRecording,
   StampFlow,
   TranscribeQuality,
   LanguageMatrix,
@@ -22,6 +22,9 @@ const brand = {
   "--color-accent": "#F54927",
   "--color-accent-deep": "#C33818",
 } as CSSProperties;
+
+// Hero slogan face: condensed all-caps, matching the App Store header art.
+const slogan = Bebas_Neue({ subsets: ["latin"], weight: "400", display: "swap" });
 
 const APP_STORE_URL = "https://apps.apple.com/app/hiss-recorder/id6796030377";
 
@@ -131,40 +134,71 @@ export function HissPage({
       </header>
 
       {/* Hero */}
-      <section className="border-b border-[var(--color-line)] px-6 pt-16 pb-16 sm:pt-24 sm:pb-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16">
-            <div>
-              <Kicker>{c.heroKicker}</Kicker>
-              <h1 className="mt-6 text-[40px] font-medium leading-[1.04] tracking-[-0.02em] sm:text-[54px] lg:text-[60px]">
-                {c.heroTitleA}
-                <br />
-                <span className="text-[var(--color-accent)]">
-                  {c.heroTitleB}
-                </span>
+      <section className="border-b border-[var(--color-line)] px-6 pt-10 pb-12 sm:pt-24 sm:pb-20">
+        {/* Two columns at every width. Type, spacing and the panel scale with this
+            container (cqw) so phones keep the same slogan | panel composition. */}
+        <div className="mx-auto max-w-6xl [container-type:inline-size]">
+          <div className="grid grid-cols-[1fr_1.05fr] items-start gap-x-[clamp(12px,3cqw,64px)]">
+            <div className="text-right">
+              <h1
+                className={`${slogan.className} text-[clamp(34px,12.5cqw,116px)] uppercase leading-[0.9]`}
+              >
+                {c.heroSlogan.map((w, i, arr) => (
+                  <span
+                    key={w}
+                    className={`block ${i === arr.length - 1 ? "mt-[0.18em] text-[var(--color-accent)]" : ""}`}
+                  >
+                    {w}
+                  </span>
+                ))}
               </h1>
-              <p className="mt-7 max-w-md text-[18px] leading-[1.55] text-[var(--color-ink-soft)] sm:text-[19px]">
-                {c.heroSub}
+              <p className="mt-[clamp(14px,2.6cqw,32px)] font-mono text-[clamp(9px,1.05cqw,12px)] uppercase leading-[1.5] tracking-[0.1em] text-[var(--color-accent)] sm:tracking-[0.18em]">
+                <span
+                  aria-hidden
+                  className="mr-[0.8em] inline-block h-[7px] w-[7px] bg-[var(--color-accent)]"
+                />
+                {c.heroKicker}
               </p>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
+              <p className="mt-2 text-[clamp(15px,2.43cqw,28px)] font-medium leading-[1.15] tracking-[-0.02em]">
+                {c.heroTitleA} {c.heroTitleB}
+              </p>
+              <div className="mt-[clamp(14px,3cqw,36px)] flex flex-wrap items-center justify-end gap-[clamp(6px,1cqw,12px)]">
                 <a
                   href={APP_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md bg-[var(--color-ink)] px-5 py-3 code-mono text-[13px] uppercase tracking-[0.08em] text-[var(--color-paper)] transition hover:brightness-125"
+                  className="inline-flex"
                 >
-                  {c.ctaDownload}
+                  {/* Apple's official badge, unmodified. */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/hiss/app-store-badge.svg"
+                    alt="Download on the App Store"
+                    width={120}
+                    height={40}
+                    className="h-10 w-auto sm:h-12"
+                  />
                 </a>
                 <a
                   href="#how"
-                  className="inline-flex items-center gap-2 rounded-md border border-[var(--color-line)] px-5 py-3 code-mono text-[13px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)] transition hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
+                  className="inline-flex items-center gap-2 rounded-md border border-[var(--color-line)] px-[clamp(10px,1.7cqw,20px)] py-[clamp(8px,1.1cqw,12px)] code-mono text-[clamp(10px,1.1cqw,13px)] uppercase tracking-[0.08em] text-[var(--color-ink-soft)] transition hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
                 >
                   {c.ctaHow}
                 </a>
               </div>
             </div>
-            <div className="lg:pl-4">
-              <HeroRecording />
+            {/* Slogan cap-height sits ~0.052em below its line box; offset so the panel top meets the letters. */}
+            <div className="mt-[calc(clamp(34px,12.5cqw,116px)*0.052)]">
+              <Image
+                src="/hiss/hero-panel.png"
+                alt="HiSS recorder screen with duration, stamp and label keys"
+                width={1200}
+                height={1556}
+                priority
+                quality={90}
+                sizes="(min-width: 1024px) 460px, 48vw"
+                className="ml-auto h-auto w-full max-w-[460px]"
+              />
             </div>
           </div>
         </div>
@@ -196,6 +230,35 @@ export function HissPage({
             </h2>
           </div>
           <AppShotCarousel />
+        </div>
+      </section>
+
+      {/* Use Cases */}
+      <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeader
+            kicker={c.useKicker}
+            title={c.useTitle}
+            intro={c.useIntro}
+          />
+          <div className="mt-12 grid border-t border-l border-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-5">
+            {c.useCases.map((u, i) => (
+              <div
+                key={u.t}
+                className="border-b border-r border-[var(--color-line)] p-6"
+              >
+                <div className="code-mono text-[13px] text-[var(--color-accent)]">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="mt-3 text-[16px] font-medium tracking-tight">
+                  {u.t}
+                </h3>
+                <p className="mt-2 text-[13px] leading-[1.55] text-[var(--color-ink-soft)]">
+                  {u.b}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -315,35 +378,6 @@ export function HissPage({
         </div>
       </section>
 
-      {/* Use Cases */}
-      <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader
-            kicker={c.useKicker}
-            title={c.useTitle}
-            intro={c.useIntro}
-          />
-          <div className="mt-12 grid border-t border-l border-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-5">
-            {c.useCases.map((u, i) => (
-              <div
-                key={u.t}
-                className="border-b border-r border-[var(--color-line)] p-6"
-              >
-                <div className="code-mono text-[13px] text-[var(--color-accent)]">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <h3 className="mt-3 text-[16px] font-medium tracking-tight">
-                  {u.t}
-                </h3>
-                <p className="mt-2 text-[13px] leading-[1.55] text-[var(--color-ink-soft)]">
-                  {u.b}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Premium */}
       <section className="border-b border-[var(--color-line)] bg-[var(--color-paper-soft)] px-6 py-24 sm:py-28">
         <div className="mx-auto max-w-6xl">
@@ -456,7 +490,7 @@ export function HissPage({
             <span>{c.footerTagline}</span>
           </span>
           <span className="flex items-center gap-2.5">
-            <span>© DOIE LLC</span>
+            <span>© <a href={company.baseUrl} className="transition hover:text-[var(--color-ink)]">DOIE LLC</a></span>
             <span className="text-[var(--color-line)]">·</span>
             <a
               href={`mailto:${company.supportEmail}`}
