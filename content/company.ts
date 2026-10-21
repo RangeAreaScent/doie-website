@@ -10,4 +10,6 @@ export const company = {
   domain: "doie.cc",
   baseUrl: "https://doie.cc",
   supportEmail: "support@doie.cc",
+  // General contact on the company home page; support pages keep supportEmail.
+  contactEmail: "hello@doie.cc",
 } as const;

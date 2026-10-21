@@ -29,6 +29,8 @@ type Product = {
   hairline?: boolean;
   href: string;
   linkLabel: string;
+  /** Store listing, shown as a small secondary link beside the product-site link. */
+  store?: { label: string; href: string };
 };
 
 // Green taken from the Snap app icons' stacked tag.
@@ -44,28 +46,30 @@ const products: Product[] = [
     group: "pro",
     tag: "Snap · Reference database for professionals",
     desc: "The FAA and EASA regulations you check all day, searchable right in the hangar. Copy a citation in a tap, keep the ones for your aircraft, and it all works offline.",
-    platform: "iPhone",
-    status: "Coming to the App Store",
-    live: false,
+    platform: "iPhone · Mac",
+    status: "On the App Store",
+    live: true,
     accent: SNAP_ACCENT,
     icon: "/apps/hangar-snap.png",
     hairline: true,
     href: "/snap/hangar-snap",
     linkLabel: "Learn more",
+    store: { label: "App Store", href: "https://apps.apple.com/us/app/hangar-snap/id6802700789" },
   },
   {
     name: "Tax Law Snap",
     group: "pro",
     tag: "Snap · Reference database for professionals",
     desc: "The tax law you look up all day, in one app. The US Code, regulations, and IRS forms, plus HMRC manuals for the UK. Search it, copy the citation, and keep the sections you cite often.",
-    platform: "iPhone",
-    status: "Coming to the App Store",
-    live: false,
+    platform: "iPhone · Mac",
+    status: "On the App Store",
+    live: true,
     accent: SNAP_ACCENT,
     icon: "/apps/tax-law-snap.png",
     hairline: true,
     href: "/snap/tax-law-snap",
     linkLabel: "Learn more",
+    store: { label: "App Store", href: "https://apps.apple.com/us/app/tax-law-snap/id6814816725" },
   },
   {
     name: "HiSS",
@@ -77,8 +81,9 @@ const products: Product[] = [
     accent: "#F54927",
     icon: "/apps/hiss.png",
     hairline: true,
-    href: "https://apps.apple.com/app/hiss-recorder/id6796030377",
-    linkLabel: "View on App Store",
+    href: "https://hiss.doie.cc",
+    linkLabel: "hiss.doie.cc",
+    store: { label: "App Store", href: "https://apps.apple.com/us/app/hiss-recorder/id6796030377" },
   },
   {
     name: "PasteLight",
@@ -89,8 +94,9 @@ const products: Product[] = [
     live: true,
     accent: "#8A5F00",
     icon: "/apps/pastelight.png",
-    href: "https://apps.apple.com/us/app/pastelight/id6812392844",
-    linkLabel: "View on Mac App Store",
+    href: "https://pastelight.space",
+    linkLabel: "pastelight.space",
+    store: { label: "Mac App Store", href: "https://apps.apple.com/us/app/pastelight/id6812392844" },
   },
   {
     name: "HearLoop",
@@ -109,12 +115,13 @@ const products: Product[] = [
     group: "everyday",
     desc: "A Markdown editor that is clean, light, and free. Open a file and write, with themes to match how you like to read.",
     platform: "Mac · Windows",
-    status: "Free download",
+    status: "On the Mac App Store",
     live: true,
     accent: "#B03A2E",
     icon: "/apps/mmdd.png",
     href: "https://mmdd.doie.cc",
     linkLabel: "mmdd.doie.cc",
+    store: { label: "Mac App Store", href: "https://apps.apple.com/us/app/mmdd/id6803640586" },
   },
   {
     name: "The Signal",
@@ -302,7 +309,17 @@ function ProductCard({ p }: { p: Product }) {
       </div>
       <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)]">
         <span>{p.platform}</span>
-        <CardLink product={p} />
+        <span className="flex flex-wrap items-center justify-end gap-x-5 gap-y-2">
+          {p.store && (
+            <a
+              href={p.store.href}
+              className={`relative z-10 inline-flex min-h-11 items-center underline decoration-[var(--color-line)] decoration-2 underline-offset-[6px] transition-colors hover:text-[var(--color-ink)] hover:decoration-current ${FOCUS}`}
+            >
+              {p.store.label} <span aria-hidden className="ml-1">↗</span>
+            </a>
+          )}
+          <CardLink product={p} />
+        </span>
       </div>
     </li>
   );
@@ -457,10 +474,10 @@ export default function CompanyHome() {
             </p>
           </div>
           <a
-            href={`mailto:${company.supportEmail}`}
+            href={`mailto:${company.contactEmail}`}
             className={`inline-flex min-h-12 items-center rounded-lg bg-[var(--color-accent)] px-6 code-mono text-[14px] font-medium text-white transition hover:brightness-110 ${FOCUS}`}
           >
-            {company.supportEmail}
+            {company.contactEmail}
           </a>
         </div>
       </section>

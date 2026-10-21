@@ -216,8 +216,8 @@ export const hangarSnap: AppContent = {
   },
 
   downloads: [
-    { platform: "iOS", channel: "app-store" },
-    { platform: "macOS", channel: "mac-app-store" },
+    { platform: "iOS", channel: "app-store", url: "https://apps.apple.com/us/app/hangar-snap/id6802700789" },
+    { platform: "macOS", channel: "mac-app-store", url: "https://apps.apple.com/us/app/hangar-snap/id6802700789" },
     { platform: "Windows", channel: "microsoft-store" },
   ],
 
