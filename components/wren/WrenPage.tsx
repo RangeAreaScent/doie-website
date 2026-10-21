@@ -361,7 +361,7 @@ export function WrenPage({ lang }: { lang: Lang }) {
             <span>{c.footerTagline}</span>
           </span>
           <span className="flex items-center gap-2.5">
-            <span>© DOIE LLC</span>
+            <span>© <a href={company.baseUrl} className="transition hover:text-[var(--color-ink)]">DOIE LLC</a></span>
             <span className="text-[var(--color-line)]">·</span>
             <a
               href={`mailto:${company.supportEmail}`}

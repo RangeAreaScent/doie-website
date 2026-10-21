@@ -274,7 +274,7 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
       <footer className="px-6 py-14">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)] sm:flex-row">
           <span className="text-center sm:text-left">
-            © {new Date().getFullYear()} {company.legalNameLong} · {company.state}
+            © {new Date().getFullYear()} <a href={company.baseUrl} className="transition hover:text-[var(--color-ink)]">{company.legalNameLong}</a> · {company.state}
           </span>
           <div className="flex gap-7">
             <Link href={`${prefix}/privacy`} className="hover:text-[var(--color-ink)]">

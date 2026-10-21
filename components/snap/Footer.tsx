@@ -21,7 +21,7 @@ export function Footer({
             <span>
               © {new Date().getFullYear()} {app.name} ·{" "}
               <Link href="/" className="hover:text-[var(--color-ink)]">
-                DOIE
+                DOIE LLC
               </Link>
             </span>
           </div>

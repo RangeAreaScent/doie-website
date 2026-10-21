@@ -521,7 +521,7 @@ export function ModerariPage({ lang }: { lang: Lang }) {
             <span>{c.footTag}</span>
           </span>
           <span className="flex items-center gap-2.5">
-            <span>© {company.legalName}</span>
+            <span>© <a href={company.baseUrl} className="transition hover:text-[var(--color-ink)]">{company.legalName}</a></span>
             <span className="text-[var(--color-line)]">·</span>
             <span className="normal-case">{c.footLatin}</span>
             <span className="text-[var(--color-line)]">·</span>

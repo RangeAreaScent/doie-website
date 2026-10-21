@@ -1,55 +1,334 @@
+import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { company } from "../content/company";
 import { Kicker } from "../components/snap/Kicker";
+import { AppCarousel } from "../components/company/AppCarousel";
 
-// doie.cc root — the company page. Names each product line but does NOT list
-// Snap's full 18-app catalog (SITE_ARCHITECTURE.md §1, §10) — a plain company
-// introduction, contact, and legal info. Tone v2 (plain, not grand). Anchored
-// on the palette's slate accent so the parent brand stays calm and cohesive
-// with the app pages.
+// doie.cc root: the company page. A hairline product grid (direction B from the
+// 2026-10 redesign mockups) introduces each product; on phones it becomes a
+// swipe carousel, one app per page. Only Snap apps that have actually shipped
+// get a card (one each, never the whole catalog; SITE_ARCHITECTURE.md §1, §10).
+// Tone v2: plain, short, no em dashes. Anchored on the palette's slate accent
+// so the parent brand stays calm.
 const brand = {
   "--color-accent": "#39617A",
   "--color-accent-deep": "#2C4B60",
 } as CSSProperties;
 
-// One entry per shipped product line, in ship order. The "Our projects"
-// section renders this list plus a filled/open square per entry (see below) —
-// add a new line here and both update together, no manual square-counting.
-const projects = [
+type Product = {
+  name: string;
+  group: "pro" | "everyday";
+  tag?: string;
+  desc: string;
+  platform: string;
+  status: string;
+  live: boolean;
+  accent: string;
+  icon: string;
+  hairline?: boolean;
+  href: string;
+  linkLabel: string;
+};
+
+// Green taken from the Snap app icons' stacked tag.
+const SNAP_ACCENT = "#4B6350";
+
+// One card per product, each Snap app on its own. `live` fills the status dot;
+// products without a store listing yet say so instead of linking to one. Snap
+// apps link to their own pages on this site. Copy is written to read like a
+// person talking, not a spec sheet.
+const products: Product[] = [
   {
-    num: "01",
-    name: "Snap.",
-    body: "Snap is the name for a line of apps that each do one job: take a body of reference material — a code set, a set of rules — that a professional needs on hand, and put it on their phone, searchable and organized around how they actually use it. The fields differ: medicine, tax, workplace safety, aviation, and others we're still adding. The shape stays the same.",
+    name: "Hangar Snap",
+    group: "pro",
+    tag: "Snap · Reference database for professionals",
+    desc: "The FAA and EASA regulations you check all day, searchable right in the hangar. Copy a citation in a tap, keep the ones for your aircraft, and it all works offline.",
+    platform: "iPhone",
+    status: "Coming to the App Store",
+    live: false,
+    accent: SNAP_ACCENT,
+    icon: "/apps/hangar-snap.png",
+    hairline: true,
+    href: "/snap/hangar-snap",
+    linkLabel: "Learn more",
   },
   {
-    num: "02",
-    name: "HiSS.",
-    body: "HiSS is a voice recorder for iOS that speaks the date, time, and a label into the start of every take, then transcribes it on-device. Built for anyone who records constantly and doesn't want to sort it out later.",
-    href: "https://hiss.doie.cc",
-    linkLabel: "hiss.doie.cc",
+    name: "Tax Law Snap",
+    group: "pro",
+    tag: "Snap · Reference database for professionals",
+    desc: "The tax law you look up all day, in one app. The US Code, regulations, and IRS forms, plus HMRC manuals for the UK. Search it, copy the citation, and keep the sections you cite often.",
+    platform: "iPhone",
+    status: "Coming to the App Store",
+    live: false,
+    accent: SNAP_ACCENT,
+    icon: "/apps/tax-law-snap.png",
+    hairline: true,
+    href: "/snap/tax-law-snap",
+    linkLabel: "Learn more",
   },
   {
-    num: "03",
-    name: "Wren.",
-    body: "Wren is a management layer for learning a language with Claude on the Mac — session memory, spaced-repetition cards, and on-device speech, running on your own Claude plan.",
-    href: "https://wren.doie.cc",
-    linkLabel: "wren.doie.cc",
+    name: "HiSS",
+    group: "everyday",
+    desc: "Every take, already labeled. HiSS says the date, time, and a label out loud at the start of each recording, then writes it all out on your device.",
+    platform: "iPhone",
+    status: "On the App Store",
+    live: true,
+    accent: "#F54927",
+    icon: "/apps/hiss.png",
+    hairline: true,
+    href: "https://apps.apple.com/app/hiss-recorder/id6796030377",
+    linkLabel: "View on App Store",
   },
   {
-    num: "04",
-    name: "Moderari.",
-    body: "Moderari is a portfolio-management app for Mac and iOS. It keeps every project you run — apps, side businesses, clients — on its own update cadence, so a glance tells you what's overdue, what's due this week, and what can wait.",
-    href: "https://moderari.doie.cc",
-    linkLabel: "moderari.doie.cc",
+    name: "PasteLight",
+    group: "everyday",
+    desc: "Take a screenshot and PasteLight quietly compresses it on your clipboard before you paste it into an AI chat. It lives in your menu bar and stays out of the way.",
+    platform: "Mac",
+    status: "On the Mac App Store",
+    live: true,
+    accent: "#8A5F00",
+    icon: "/apps/pastelight.png",
+    href: "https://apps.apple.com/us/app/pastelight/id6812392844",
+    linkLabel: "View on Mac App Store",
+  },
+  {
+    name: "HearLoop",
+    group: "everyday",
+    desc: "Practice any recording one sentence at a time. HearLoop finds the sentences, repeats them, and leaves a pause so you can say each one back.",
+    platform: "iPhone",
+    status: "Coming to the App Store",
+    live: false,
+    accent: "#F26A5A",
+    icon: "/apps/hearloop.png",
+    href: "https://hearloop.doie.cc",
+    linkLabel: "hearloop.doie.cc",
+  },
+  {
+    name: "mMDd",
+    group: "everyday",
+    desc: "A Markdown editor that is clean, light, and free. Open a file and write, with themes to match how you like to read.",
+    platform: "Mac · Windows",
+    status: "Free download",
+    live: true,
+    accent: "#B03A2E",
+    icon: "/apps/mmdd.png",
+    href: "https://mmdd.doie.cc",
+    linkLabel: "mmdd.doie.cc",
+  },
+  {
+    name: "The Signal",
+    group: "everyday",
+    tag: "Economic briefing · Daily, weekly, monthly",
+    desc: "Headlines from ten leading economic outlets, boiled down to the signals that matter. See what they all cover, what only one or two noticed, and where they read the same story differently. Free to read, with no ads.",
+    platform: "Web",
+    status: "Live on the web",
+    live: true,
+    accent: "#1D1D1B",
+    icon: "/apps/the-signal.png",
+    hairline: true,
+    href: "https://thesignal.cloud",
+    linkLabel: "thesignal.cloud",
   },
 ];
 
-function Wordmark() {
+const proProducts = products.filter((p) => p.group === "pro");
+const everydayProducts = products.filter((p) => p.group === "everyday");
+
+const principles = [
+  {
+    label: "Focus",
+    title: "The tools you use again and again.",
+    body: "Our apps are for the tools people rely on every day, whether it is their profession or a part of daily life. We focus on making each one a little more convenient.",
+  },
+  {
+    label: "Approach",
+    title: "Start from what is actually needed.",
+    body: "We look closely at what we, and the professionals we build for, need from a tool. Then we design the interface around that.",
+  },
+  {
+    label: "Belief",
+    title: "Small improvements add up.",
+    body: "A small gain in a tool used every day becomes a large one over time. For the people who depend on it, that is a real difference.",
+  },
+];
+
+const FOCUS =
+  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]";
+
+/* A real app icon. Decorative: the app name always sits next to it. The size
+   comes in as classes so it can change at the phone breakpoint. */
+function AppIcon({
+  src,
+  className,
+  hairline = false,
+}: {
+  src: string;
+  className: string;
+  hairline?: boolean;
+}) {
   return (
-    <span className="flex h-[26px] w-[26px] items-center justify-center rounded-md bg-[var(--color-accent)] text-white">
-      <span className="code-mono text-[11px] font-medium tracking-tight">do</span>
+    <Image
+      src={src}
+      alt=""
+      width={256}
+      height={256}
+      quality={90}
+      className={`shrink-0 rounded-[22%] ${hairline ? "border border-[var(--color-line)]" : ""} ${className}`}
+    />
+  );
+}
+
+function Status({
+  accent,
+  live,
+  children,
+}: {
+  accent: string;
+  live: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-ink)]">
+      <span
+        aria-hidden
+        className="h-2 w-2 shrink-0 rounded-full border-[1.5px]"
+        style={{ borderColor: accent, background: live ? accent : "transparent" }}
+      />
+      {children}
     </span>
+  );
+}
+
+// Phone: each card is a bordered page in the swipe carousel. From `sm`: a cell
+// of the shared hairline grid. Scroll-reveal is sm+ only (see globals.css).
+const CARD =
+  "reveal group relative flex min-w-0 flex-col gap-[22px] border border-[var(--color-line)] p-6 transition-colors hover:bg-[var(--color-paper-soft)] motion-reduce:transition-none max-sm:shrink-0 max-sm:grow-0 max-sm:basis-[86%] max-sm:snap-center sm:border-0 sm:border-r sm:border-b sm:p-8";
+
+function AccentBar({ accent }: { accent: string }) {
+  return (
+    <span
+      aria-hidden
+      className="absolute -top-px -left-px h-[3px] w-10 transition-[width] duration-300 group-hover:w-[calc(100%+2px)] motion-reduce:transition-none"
+      style={{ background: accent }}
+    />
+  );
+}
+
+const LINK_CLASS = `text-[12px] font-medium text-[var(--color-ink)] underline decoration-2 underline-offset-[6px] after:absolute after:inset-0 ${FOCUS}`;
+
+function CardLink({ product: p }: { product: Product }) {
+  const body = (
+    <>
+      {p.linkLabel}{" "}
+      <span
+        aria-hidden
+        className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transition-none"
+      >
+        →
+      </span>
+    </>
+  );
+  return p.href.startsWith("/") ? (
+    <Link href={p.href} className={LINK_CLASS} style={{ textDecorationColor: p.accent }}>
+      {body}
+    </Link>
+  ) : (
+    <a href={p.href} className={LINK_CLASS} style={{ textDecorationColor: p.accent }}>
+      {body}
+    </a>
+  );
+}
+
+const FOOTER_COLUMNS = [
+  {
+    title: "Products",
+    links: products.map((p) => ({ label: p.name, href: p.href })),
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Contact us", href: "/support" },
+      { label: "Hangar Snap", href: "/snap/hangar-snap/support" },
+      { label: "Tax Law Snap", href: "/snap/tax-law-snap/support" },
+      { label: "HearLoop", href: "https://hearloop.doie.cc/support" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "Contact", href: "/#contact" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+    ],
+  },
+];
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const cls = `inline-flex min-h-11 items-center text-[15px] sm:min-h-9 text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] ${FOCUS}`;
+  return href.startsWith("/") ? (
+    <Link href={href} className={cls}>
+      {children}
+    </Link>
+  ) : (
+    <a href={href} className={cls}>
+      {children}
+    </a>
+  );
+}
+
+function ProductCard({ p }: { p: Product }) {
+  return (
+    <li className={`${CARD} sm:min-h-[320px] sm:flex-[1_1_440px]`}>
+      <AccentBar accent={p.accent} />
+      <div className="flex items-start justify-between gap-4 max-sm:flex-col">
+        <AppIcon src={p.icon} hairline={p.hairline} className="size-16 max-sm:size-28" />
+        <Status accent={p.accent} live={p.live}>
+          {p.status}
+        </Status>
+      </div>
+      <div>
+        {p.tag && (
+          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)]">
+            {p.tag}
+          </p>
+        )}
+        <h3 className="text-[28px] font-medium leading-[1.1] tracking-[-0.02em] max-sm:text-[32px]">
+          {p.name}
+        </h3>
+        <p className="mt-3 max-w-[46ch] text-pretty text-[15px] leading-[1.6] text-[var(--color-ink-soft)] max-sm:text-[16px]">
+          {p.desc}
+        </p>
+      </div>
+      <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)]">
+        <span>{p.platform}</span>
+        <CardLink product={p} />
+      </div>
+    </li>
+  );
+}
+
+function ProductGroup({
+  title,
+  intro,
+  items,
+}: {
+  title: string;
+  intro: string;
+  items: Product[];
+}) {
+  return (
+    <div className="mt-12 first:mt-0">
+      <h3 className="text-[20px] font-medium tracking-tight">{title}</h3>
+      <p className="mb-6 mt-1.5 max-w-[60ch] text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
+        {intro}
+      </p>
+      <AppCarousel names={items.map((p) => p.name)}>
+        {items.map((p) => (
+          <ProductCard key={p.name} p={p} />
+        ))}
+      </AppCarousel>
+    </div>
   );
 }
 
@@ -57,251 +336,159 @@ export default function CompanyHome() {
   return (
     <main className="min-h-screen" style={brand}>
       <header className="sticky top-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-paper)]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <Link href="/" className="flex items-center gap-2.5">
-            <Wordmark />
-            <span className="text-[15px] font-medium tracking-tight">DOIE</span>
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 py-4 sm:px-8">
+          <Link href="/" className={`flex min-h-11 items-center ${FOCUS}`}>
+            <Image
+              src="/brand/doie-logo.svg"
+              alt="DOIE"
+              width={1377}
+              height={637}
+              priority
+              className="h-8 w-[69px] shrink-0"
+            />
           </Link>
-          <a
-            href={`mailto:${company.supportEmail}`}
-            className="rounded-md border border-[var(--color-accent)] px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.1em] transition hover:bg-[var(--color-accent)] hover:text-white"
+          <nav
+            aria-label="Primary"
+            className="flex items-center gap-5 font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--color-ink-soft)] sm:gap-7"
           >
-            Contact
-          </a>
+            <a href="#apps" className={`hidden hover:text-[var(--color-ink)] sm:inline ${FOCUS}`}>
+              Products
+            </a>
+            <a href="#principles" className={`hidden hover:text-[var(--color-ink)] sm:inline ${FOCUS}`}>
+              Principles
+            </a>
+            <a
+              href="#contact"
+              className={`inline-flex min-h-11 items-center rounded-md border border-[var(--color-accent)] px-3.5 text-[var(--color-ink)] transition hover:bg-[var(--color-accent)] hover:text-white ${FOCUS}`}
+            >
+              Contact
+            </a>
+          </nav>
         </div>
       </header>
 
-      <section className="border-b border-[var(--color-line)] px-6 pt-24 pb-20 sm:pt-32 sm:pb-28">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_auto]">
-          <div className="max-w-3xl">
-            <Kicker>
-              {company.legalName} · {company.state}
-            </Kicker>
-            <h1 className="mt-6 max-w-3xl text-[38px] font-medium leading-[1.05] tracking-[-0.02em] sm:text-[54px] lg:text-[60px]">
-              A handful of small products, each built around one job.
-            </h1>
-            <p className="mt-7 max-w-xl text-[18px] leading-[1.55] text-[var(--color-ink-soft)] sm:text-[19px]">
-              DOIE is a small software company. We build a line of
-              reference-lookup apps, a voice recorder, a language tutor for
-              the Mac, and a tool for keeping every project you run on its own
-              update schedule. Different jobs, one approach: find something
-              small and specific, and build it properly.
-            </p>
-          </div>
-
-          {/* A tone study on the brand slate — one hue, stepped light to dark.
-              Decorative; hidden on small screens to keep the mobile hero plain. */}
-          <div aria-hidden className="hidden lg:grid lg:grid-cols-4 lg:gap-3">
-            {[
-              "#eaeff2",
-              "#d3dfe5",
-              "#aec2cd",
-              "#84a2b1",
-              "#5d8698",
-              "#4e86a0",
-              "#39617a",
-              "#2c4b60",
-            ].map((tone, i) => (
-              <div
-                key={tone}
-                className="h-16 w-16 rounded-lg"
-                style={{ background: tone, marginTop: i % 2 ? 28 : 0 }}
-              />
-            ))}
-          </div>
+      <section className="mx-auto max-w-[1200px] px-6 pt-16 pb-12 sm:px-8 sm:pt-24 sm:pb-[72px]">
+        <Kicker>{company.legalName}</Kicker>
+        <div className="mt-6 flex flex-wrap items-end justify-between gap-x-16 gap-y-8">
+          <h1 className="min-w-0 flex-[3_1_560px] text-balance text-[clamp(2.5rem,1.4rem+4.2vw,4.5rem)] font-medium leading-[1.03] tracking-[-0.03em]">
+            Everyday tools, made a little easier.
+          </h1>
+          <p className="min-w-0 max-w-[420px] flex-[2_1_320px] text-pretty text-[17px] leading-[1.55] text-[var(--color-ink-soft)]">
+            Focused apps for the jobs you do every day. We engineer better
+            interfaces, so the work gets more efficient and daily life a little
+            more convenient.
+          </p>
         </div>
       </section>
 
-      <section className="border-b border-[var(--color-line)] px-6 py-20 sm:py-24">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid border-t border-l border-[var(--color-line)] sm:grid-cols-3">
-            {[
-              {
-                title: "Ordinary jobs, a fresh angle",
-                body: "We rarely go looking for a brand-new problem. Most of what we build starts as something plain and necessary — a lookup, a recording, a lesson, a list of projects — and the work is finding our own way to do it.",
-              },
-              {
-                title: "A little easier, for everyone",
-                body: "Every interface we build is aimed at the same small target: make one part of someone's day a bit more convenient. That's a modest goal on purpose — it's also the whole point.",
-              },
-              {
-                title: "Small differences, our own style",
-                body: "A small difference in how something works can add up to real convenience over time. Finding that difference, and shaping it into something distinctly ours, is the engineering we actually do.",
-              },
-            ].map((c, i) => (
-              <div
-                key={c.title}
-                className="border-b border-r border-[var(--color-line)] p-8"
-              >
-                <div className="code-mono text-[13px] text-[var(--color-accent)]">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <h2 className="mt-4 text-[20px] font-medium tracking-tight">
-                  {c.title}
-                </h2>
-                <p className="mt-2 text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
-                  {c.body}
-                </p>
-              </div>
-            ))}
-          </div>
+      <section id="apps" className="mx-auto max-w-[1200px] scroll-mt-20 px-6 pb-16 sm:px-8 sm:pb-24">
+        <h2 className="sr-only">Products</h2>
+        <div className="flex flex-wrap items-baseline justify-between gap-3 pb-8">
+          <Kicker>Products</Kicker>
+          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)] sm:hidden">
+            Swipe to browse →
+          </p>
         </div>
+
+        <ProductGroup
+          title="Reference for professionals"
+          intro="The Snap apps are searchable reference databases for the sources professionals check every day."
+          items={proProducts}
+        />
+        <p className="mt-6 max-w-[60ch] text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
+          More Snap apps are on the way, across medicine, workplace safety, and
+          other fields.
+        </p>
+
+        <ProductGroup
+          title="Everyday tools"
+          intro="Focused apps and sites for the things you do again and again."
+          items={everydayProducts}
+        />
       </section>
 
-      <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
-        <div className="mx-auto max-w-5xl">
-          <div className="flex items-start justify-between gap-10">
-            <div className="max-w-2xl">
+      <section
+        id="principles"
+        className="scroll-mt-20 border-y border-[var(--color-line)] bg-[var(--color-paper-soft)]"
+      >
+        <div className="mx-auto max-w-[1200px] px-6 py-16 sm:px-8 sm:py-24">
+          <div className="flex flex-wrap gap-x-16 gap-y-10">
+            <div className="min-w-0 flex-[1_1_320px] lg:max-w-[420px]">
               <Kicker>Why we build</Kicker>
-              <h2 className="mt-5 text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
-                The interface is the work.
+              <h2 className="mt-5 text-balance text-[clamp(1.75rem,1.2rem+2vw,2.75rem)] font-medium leading-[1.08] tracking-[-0.02em]">
+                Built for the work you do every day.
               </h2>
-              <p className="mt-4 text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-                DOIE stands for Dynamics Of Interface Engineering. Underneath
-                every app we make is the same belief: a better interface changes
-                more than it looks like it should. Most of the friction people
-                deal with all day — a clunky lookup, a form that fights you, a
-                tool built once and never touched again — isn't a hard problem.
-                It's just one nobody got around to fixing. We got around to it.
+              <p className="mt-5 text-pretty text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
+                DOIE makes software for ordinary, repeated jobs. We pay attention
+                to the details, because that is where a tool gets easier to use.
               </p>
             </div>
-            {/* Small tone-study echo of the hero motif. */}
-            <div
-              aria-hidden
-              className="hidden shrink-0 grid-cols-2 gap-2 pt-2 sm:grid"
-            >
-              {["#d3dfe5", "#84a2b1", "#4e86a0", "#2c4b60"].map((tone) => (
-                <span
-                  key={tone}
-                  className="h-9 w-9 rounded-[5px]"
-                  style={{ background: tone }}
-                />
+            <dl className="min-w-0 flex-[2_1_480px] border-t border-[var(--color-line)]">
+              {principles.map((c) => (
+                <div
+                  key={c.label}
+                  className="grid gap-x-8 gap-y-2 border-b border-[var(--color-line)] py-7 sm:grid-cols-[120px_1fr]"
+                >
+                  <dt className="code-mono pt-1 text-[12px] uppercase tracking-[0.18em] text-[var(--color-ink-soft)]">
+                    {c.label}
+                  </dt>
+                  <dd>
+                    <h3 className="text-[20px] font-medium tracking-tight">{c.title}</h3>
+                    <p className="mt-2 text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
+                      {c.body}
+                    </p>
+                  </dd>
+                </div>
               ))}
-            </div>
-          </div>
-
-          <div className="mt-10 border-t border-[var(--color-line)]">
-            {[
-              {
-                title: "Room to improve, everywhere",
-                body: "We don't think an idea is too small to build, or a field too specialized to improve. A two-tap fix and a workflow one profession leans on all day get the same amount of attention from us. Most tools like that were built once, a long time ago, by someone who's since moved on — we think they're worth a second look.",
-              },
-              {
-                title: "Careful, not greedy",
-                body: "We'd rather build a few things well than take on everything at once. Spread thin, quality is the first thing that goes — and quality is the point. So we grow slowly, one problem at a time, and try to actually finish what we start before starting the next thing.",
-              },
-              {
-                title: "A better day for whoever's using it",
-                body: "The people we build for are usually specialists — in a field with its own codes, its own rules, its own way of doing things — and their tools are often the last thing anyone thought to improve. If what we build makes one part of someone's day a little easier, that's the whole point. Enough of that, across enough fields, is what a better environment looks like to us.",
-              },
-            ].map((c, i) => (
-              <div
-                key={c.title}
-                className="grid gap-2 border-b border-[var(--color-line)] py-8 sm:grid-cols-[88px_1fr] sm:gap-8"
-              >
-                <div className="code-mono text-[13px] text-[var(--color-accent)]">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <div>
-                  <h3 className="text-[18px] font-medium tracking-tight">
-                    {c.title}
-                  </h3>
-                  <p className="mt-2 max-w-2xl text-[15px] leading-[1.6] text-[var(--color-ink-soft)]">
-                    {c.body}
-                  </p>
-                </div>
-              </div>
-            ))}
+            </dl>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
-        <div className="mx-auto max-w-4xl">
-          <Kicker>Our projects</Kicker>
-
-          <div className="mt-7 space-y-12">
-            {projects.map((p) => (
-              <div key={p.num}>
-                <div className="flex items-baseline gap-4">
-                  <span className="code-mono text-[15px] text-[var(--color-accent)]">
-                    {p.num}
-                  </span>
-                  <h2 className="text-[26px] font-medium tracking-tight sm:text-[32px]">
-                    {p.name}
-                  </h2>
-                </div>
-                <p className="mt-4 max-w-2xl text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-                  {p.body}
-                </p>
-                {p.href && (
-                  <a
-                    href={p.href}
-                    className="mt-3 inline-block font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)] underline decoration-[var(--color-line)] underline-offset-4 hover:text-[var(--color-ink)]"
-                  >
-                    {p.linkLabel} →
-                  </a>
-                )}
-              </div>
-            ))}
+      <section id="contact" className="scroll-mt-20">
+        <div className="mx-auto flex max-w-[1200px] flex-wrap items-end justify-between gap-8 px-6 py-16 sm:px-8 sm:py-24">
+          <div className="min-w-0 flex-[1_1_420px]">
+            <Kicker>Contact</Kicker>
+            <h2 className="mt-5 max-w-[20ch] text-balance text-[clamp(1.75rem,1.2rem+2vw,2.75rem)] font-medium leading-[1.08] tracking-[-0.02em]">
+              Questions, feedback, or partnership inquiries.
+            </h2>
+            <p className="mt-4 text-[16px] text-[var(--color-ink-soft)]">
+              We read every message.
+            </p>
           </div>
-
-          <p className="mt-12 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)]">
-            Four lines so far. We're working on what comes after them.
-          </p>
-          {/* One filled square per shipped line, plus a couple open ones —
-              derived from `projects` so this never needs manual recounting. */}
-          <div aria-hidden className="mt-6 flex gap-2">
-            {projects.map((p) => (
-              <span
-                key={p.num}
-                className="h-4 w-4 rounded-[3px] bg-[var(--color-accent)]"
-              />
-            ))}
-            {[0, 1].map((i) => (
-              <span
-                key={`open-${i}`}
-                className="h-4 w-4 rounded-[3px] border border-[var(--color-line)]"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[var(--color-line)] px-6 py-24 sm:py-28">
-        <div className="mx-auto max-w-4xl">
-          <Kicker>Contact</Kicker>
-          <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
-            Questions, feedback, or partnership inquiries.
-          </h2>
-          <p className="mt-4 text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-            We read every message.
-          </p>
           <a
             href={`mailto:${company.supportEmail}`}
-            className="mt-7 inline-flex items-center gap-2 rounded-md bg-[var(--color-accent)] px-5 py-3 code-mono text-[14px] text-white transition hover:brightness-110"
+            className={`inline-flex min-h-12 items-center rounded-lg bg-[var(--color-accent)] px-6 code-mono text-[14px] font-medium text-white transition hover:brightness-110 ${FOCUS}`}
           >
             {company.supportEmail}
           </a>
         </div>
       </section>
 
-      <footer className="px-6 py-14">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)] sm:flex-row">
-          <span className="text-center sm:text-left">
-            © {new Date().getFullYear()} {company.legalNameLong} · {company.state}
-          </span>
-          <div className="flex gap-7">
-            <Link href="/privacy" className="hover:text-[var(--color-ink)]">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-[var(--color-ink)]">
-              Terms
-            </Link>
-            <Link href="/support" className="hover:text-[var(--color-ink)]">
-              Support
-            </Link>
+      <footer className="border-t border-[var(--color-line)]">
+        <div className="mx-auto max-w-[1200px] px-6 py-12 sm:px-8">
+          <div className="grid gap-10 sm:grid-cols-[1.4fr_1fr_1fr] sm:gap-8">
+            {FOOTER_COLUMNS.map((col) => (
+              <nav key={col.title} aria-label={col.title}>
+                <h2 className="font-mono text-[12px] uppercase tracking-[0.18em] text-[var(--color-ink-soft)]">
+                  {col.title}
+                </h2>
+                <ul
+                  role="list"
+                  className={`mt-3 grid gap-x-8 ${col.title === "Products" ? "grid-cols-2" : ""}`}
+                >
+                  {col.links.map((l) => (
+                    <li key={l.label}>
+                      <FooterLink href={l.href}>{l.label}</FooterLink>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
           </div>
+          <p className="mt-10 border-t border-[var(--color-line)] pt-6 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)]">
+            © {new Date().getFullYear()} {company.legalNameLong} · GA, USA
+          </p>
         </div>
       </footer>
     </main>

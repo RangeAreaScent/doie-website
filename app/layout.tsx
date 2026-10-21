@@ -52,11 +52,12 @@ const sansKr = IBM_Plex_Sans_KR({
 export const metadata: Metadata = {
   metadataBase: new URL(company.baseUrl),
   title: {
-    default: "DOIE — Small products, each built around one job",
+    default: "DOIE: everyday tools, made a little easier",
     template: "%s",
   },
   description:
-    "DOIE builds small, focused software — a line of reference-lookup apps, a voice recorder, a language tutor, and a tool for tracking the projects you run. Each one is built around a single job.",
+    "DOIE builds focused apps for everyday work: professional reference databases, a voice recorder, a screenshot compressor, an audio practice player, a Markdown editor, and an economic news briefing.",
+  twitter: { card: "summary_large_image" },
   // Defense in depth alongside robots.ts's disallow: a noindex meta tag keeps
   // pages out of results even for crawlers that ignore robots.txt disallow
   // rules. Remove both once the site is ready for a public launch.
