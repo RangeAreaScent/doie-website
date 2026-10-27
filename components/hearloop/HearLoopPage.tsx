@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { company } from "../../content/company";
@@ -6,6 +7,8 @@ import { Kicker } from "../snap/Kicker";
 // HearLoop: a bespoke product page (not a /snap/ reference app), served at
 // hearloop.doie.cc via middleware. Instrument tokens (Space Grotesk, IBM Plex
 // Mono, hairlines, mono kickers) with a calm teal as the functional accent.
+const APP_STORE_URL = "https://apps.apple.com/app/id6824921411";
+
 const brand = {
   "--color-accent": "#2F7F86",
   "--color-accent-deep": "#235F65",
@@ -73,22 +76,19 @@ const BARS = [
   22, 10, 0, 0, 0, 12, 26, 18, 30, 9,
 ];
 
-function HearLoopMark({ size = 26 }: { size?: number }) {
+/* Real HearLoop app icon (from the App Store listing), with a hairline so the
+   light edge holds on the white page. */
+function HearLoopMark({ size = 32 }: { size?: number }) {
   return (
-    <span
-      className="flex items-center justify-center rounded-md bg-[var(--color-accent)] text-white"
+    <Image
+      src="/hearloop/hearloop-icon.png"
+      alt=""
+      width={size}
+      height={size}
+      quality={90}
+      className="rounded-md border border-[var(--color-line)]"
       style={{ width: size, height: size }}
-      aria-hidden
-    >
-      <svg width={size * 0.62} height={size * 0.62} viewBox="0 0 16 16" fill="none">
-        <path
-          d="M2 8h1.5M5 5v6M8 3v10M11 5.5v5M13.5 8H14"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-        />
-      </svg>
-    </span>
+    />
   );
 }
 
@@ -186,9 +186,17 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
               shadowing pauses for you.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <span className="inline-flex items-center rounded-md border border-[var(--color-line)] px-5 py-3 code-mono text-[13px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)]">
-                Coming to the App Store
-              </span>
+              <a href={APP_STORE_URL} className="inline-flex" target="_blank" rel="noopener noreferrer">
+                {/* Apple's official badge, unmodified. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/hearloop/app-store-badge.svg"
+                  alt="Download on the App Store"
+                  width={120}
+                  height={40}
+                  className="h-12 w-auto"
+                />
+              </a>
               <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)]">
                 Free download · No account
               </span>
