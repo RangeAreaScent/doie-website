@@ -3,7 +3,7 @@ import type { AppContent } from "../types";
 // ICD Snap — standalone (medical coding). Rebuilt from the founder-reviewed
 // brief at content-briefs/icd-snap.md (7-argument persuasive arc), in the
 // measured tone calibrated on NIOSH. Numbers are the brief's verified figures:
-// 98,147 ICD-10-CM codes, 74,714 billable, FY 2026 edition. Per the series
+// 98,403 ICD-10-CM codes, 74,879 billable, FY 2027 edition. Per the series
 // rule, the brief's "backup" argument is replaced with a data-provenance card.
 // iOS screenshots are real; no Mac captures yet → copy-only desktop band.
 
@@ -19,10 +19,10 @@ export const icdSnap: AppContent = {
   pricing: "Free · No ads · No account",
 
   hero: {
-    badge: "ICD-10-CM 2026 edition",
+    badge: "ICD-10-CM 2027 edition",
     headline: { lead: "The ICD-10-CM codebook,", accent: "in one app." },
     subheadline:
-      "All 98,147 codes from the 2026 edition on your phone. Search a diagnosis or a partial code, copy it in a tap, and keep the few dozen you use close at hand. No ads, no account.",
+      "All 98,403 codes from the 2027 edition on your phone. Search a diagnosis or a partial code, copy it in a tap, and keep the few dozen you use close at hand. No ads, no account.",
     heroShot: "/snap/icd-snap/screenshots/search.png",
     heroShotAlt:
       "ICD Snap search screen showing live ICD-10 results as you type",
@@ -30,9 +30,9 @@ export const icdSnap: AppContent = {
   },
 
   trustBar: [
-    "98,147 codes",
-    "74,714 billable",
-    "FY 2026 edition",
+    "98,403 codes",
+    "74,879 billable",
+    "FY 2027 edition",
     "Works offline",
     "No ads, no account",
   ],
@@ -49,7 +49,7 @@ export const icdSnap: AppContent = {
       },
       {
         title: "Keep the codes you use",
-        body: "You code the same few dozen diagnoses over and over, not all 98,147. Star them onto Favorites, and group them into collections that match how you work — Diabetes Follow-up, Annual Physical, Pre-Op, Well-Child — so a visit type's codes are already together before the patient sits down.",
+        body: "You code the same few dozen diagnoses over and over, not all 98,403. Star them onto Favorites, and group them into collections that match how you work — Diabetes Follow-up, Annual Physical, Pre-Op, Well-Child — so a visit type's codes are already together before the patient sits down.",
       },
       {
         title: "Export or print your sets",
@@ -61,11 +61,11 @@ export const icdSnap: AppContent = {
       },
       {
         title: "Works offline",
-        body: "The full FY 2026 set lives on the device, so search, favorites, and collections keep working without a signal — handy in a basement billing office, a rural clinic, or a locked-down exam room.",
+        body: "The full FY 2027 set lives on the device, so search, favorites, and collections keep working without a signal — handy in a basement billing office, a rural clinic, or a locked-down exam room.",
       },
       {
         title: "Straight from the source",
-        body: "Every code comes from the CMS/CDC ICD-10-CM release — U.S. public-domain data, used as published. 98,147 codes, 74,714 of them billable, from the FY 2026 edition; nothing is invented, and nothing is left out.",
+        body: "Every code comes from the CMS/CDC ICD-10-CM release — U.S. public-domain data, used as published. 98,403 codes, 74,879 of them billable, from the FY 2027 edition; nothing is invented, and nothing is left out.",
       },
     ],
   },
@@ -132,11 +132,11 @@ export const icdSnap: AppContent = {
 
   dataStats: {
     heading: { lead: "The whole codebook,", accent: "on your phone." },
-    body: "ICD Snap includes the complete 2026 ICD-10-CM dataset, searchable on the device. No subscription, no downloads.",
+    body: "ICD Snap includes the complete 2027 ICD-10-CM dataset, searchable on the device. No subscription, no downloads.",
     stats: [
-      { num: "98,147", label: "ICD-10-CM codes" },
-      { num: "74,714", label: "Billable codes" },
-      { num: "2026", label: "FY edition" },
+      { num: "98,403", label: "ICD-10-CM codes" },
+      { num: "74,879", label: "Billable codes" },
+      { num: "2027", label: "FY edition" },
       { num: "0", label: "Network requests" },
     ],
   },
@@ -145,12 +145,12 @@ export const icdSnap: AppContent = {
     {
       question: "Is ICD Snap really free?",
       answer:
-        "Yes. The full app is free, with no ads and no account. If optional Pro features arrive later, everything on this page stays free.",
+        "Yes. The full app is free, with no ads and no account. Search, favorites, collections, notes, and export are free on every platform, with no limits. An optional one-time Premium purchase unlocks extra themes and app icons on iPhone, and extra themes on the desktop apps.",
     },
     {
       question: "Does it work without internet?",
       answer:
-        "Completely. The entire ICD-10-CM 2026 dataset ships in the app; search, favorites, and collections all work offline — including in basements, planes, and rural clinics.",
+        "Completely. The entire ICD-10-CM 2027 dataset ships in the app; search, favorites, and collections all work offline — including in basements, planes, and rural clinics.",
     },
     {
       question: "What data do you collect?",
@@ -185,25 +185,30 @@ export const icdSnap: AppContent = {
     {
       platform: "macOS",
       channel: "direct",
-      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.2/ICD.Snap_1.0.2_universal.dmg",
+      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.3/ICD.Snap_1.0.3_universal.dmg",
     },
     {
       platform: "Windows",
       channel: "direct",
-      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.2/ICD.Snap_1.0.2_x64-setup.exe",
+      url: "https://github.com/RangeAreaScent/ICD-Snap-Desktop/releases/download/v1.0.3/ICD.Snap_1.0.3_x64-setup.exe",
     },
+  ],
+
+  // Same wording as the iOS About screen, so the page and the app match.
+  attribution: [
+    "ICD Snap is not affiliated with, endorsed by, or sponsored by the U.S. government, CDC, or NCHS.",
   ],
 
   seo: {
     title: "ICD Snap — the ICD-10-CM codebook in one app",
     description:
-      "All 98,147 ICD-10-CM 2026 codes on iPhone, Mac, and Windows. Search and copy codes, keep favorites and collections, and export print-ready reference sets. Free, no ads, no account.",
+      "All 98,403 ICD-10-CM 2027 codes on iPhone, Mac, and Windows. Search and copy codes, keep favorites and collections, and export print-ready reference sets. Free, no ads, no account.",
     keywords: [
       "ICD-10",
       "ICD-10-CM",
       "medical billing",
       "ICD-10 lookup",
-      "ICD-10 2026",
+      "ICD-10 2027",
       "iPhone ICD app",
       "ICD Snap",
     ],
