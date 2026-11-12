@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Bebas_Neue } from "next/font/google";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { company } from "../../content/company";
@@ -6,12 +7,18 @@ import { Kicker } from "../snap/Kicker";
 
 // HearLoop: a bespoke product page (not a /snap/ reference app), served at
 // hearloop.doie.cc via middleware. Instrument tokens (Space Grotesk, IBM Plex
-// Mono, hairlines, mono kickers) with a calm teal as the functional accent.
+// Mono, hairlines, mono kickers) with the app's coral as the functional accent.
 const APP_STORE_URL = "https://apps.apple.com/app/id6824921411";
 
+const slogan = Bebas_Neue({ subsets: ["latin"], weight: "400", display: "swap" });
+const SLOGAN = ["Repeat", "Shadow", "Learn Faster"];
+
 const brand = {
-  "--color-accent": "#2F7F86",
-  "--color-accent-deep": "#235F65",
+  // Small text uses the darker coral (4.98:1 on white). The brighter app coral
+  // (#D9795F, 3.07:1) is only for the large slogan line.
+  "--color-accent": "#BE4A33",
+  "--color-accent-deep": "#9A3A27",
+  "--color-accent-bright": "#D9795F",
 } as CSSProperties;
 
 const USES = [
@@ -29,13 +36,13 @@ const USES = [
   },
   {
     t: "Anything else",
-    b: "Anything you want to hear again and again until it sticks.",
+    b: "Anything else you want to hear again.",
   },
 ];
 
 const BLOCKS = [
   {
-    t: "Repeat, automatically",
+    t: "One sentence at a time",
     items: [
       "Sentences are found for you from the pauses in the speech.",
       "Jump to the previous or next sentence with one big button.",
@@ -43,7 +50,7 @@ const BLOCKS = [
     ],
   },
   {
-    t: "Shadowing made easy",
+    t: "Shadowing",
     items: [
       "After every sentence, playback waits so you can speak it back.",
       "Auto mode sizes the pause to the sentence you just heard, or pick 3 to 15 seconds.",
@@ -53,27 +60,22 @@ const BLOCKS = [
   {
     t: "Read along",
     items: [
-      "See the transcript with the current word highlighted as it plays.",
-      "Transcription runs on your device. Your audio never leaves your iPhone. Requires iOS 26 or later.",
+      "The recording is transcribed and the current word is highlighted as it plays.",
+      "Transcription runs on your device. Your audio never leaves it. Requires iOS 26 or later, or macOS 26 or later on Mac.",
     ],
   },
   {
-    t: "Star what matters",
+    t: "Star the hard ones",
     items: ["Star the hard sentences and practice only those."],
   },
   {
-    t: "Made for real life",
+    t: "One hand, one tap",
     items: [
       "Large buttons and haptic feedback, easy to use with one hand.",
       "Keeps playing with the screen locked and in the background.",
       "Car and headphone previous and next buttons jump by sentence.",
     ],
   },
-];
-
-const BARS = [
-  6, 14, 22, 12, 28, 18, 9, 0, 0, 0, 10, 24, 30, 16, 26, 12, 0, 0, 0, 8, 20, 28, 14,
-  22, 10, 0, 0, 0, 12, 26, 18, 30, 9,
 ];
 
 /* Real HearLoop app icon (from the App Store listing), with a hairline so the
@@ -89,63 +91,6 @@ function HearLoopMark({ size = 32 }: { size?: number }) {
       className="rounded-md border border-[var(--color-line)]"
       style={{ width: size, height: size }}
     />
-  );
-}
-
-/* A built stand-in for the app, drawn from the real behavior: a waveform cut
-   into sentences by silence, and a transcript with the current word marked. */
-function PlayerObject() {
-  return (
-    <div
-      className="w-full max-w-[420px] border border-[var(--color-line)] bg-[var(--color-paper)]"
-      role="img"
-      aria-label="Illustration: a waveform split into sentences, with the transcript and the current word highlighted"
-    >
-      <div className="flex items-center justify-between border-b border-[var(--color-line)] px-4 py-3 code-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)]">
-        <span>Sentence 3 / 12</span>
-        <span className="text-[var(--color-accent)]">Repeat ×2</span>
-      </div>
-      <div className="flex h-[88px] items-center gap-[3px] px-4">
-        {BARS.map((h, i) => (
-          <span
-            key={i}
-            className="w-[5px] shrink-0 rounded-full"
-            style={{
-              height: h === 0 ? 2 : h,
-              background:
-                h === 0
-                  ? "var(--color-line)"
-                  : i > 9 && i < 17
-                    ? "var(--color-accent)"
-                    : "#c9c9c4",
-            }}
-          />
-        ))}
-      </div>
-      <div className="space-y-2 border-t border-[var(--color-line)] px-4 py-4 text-[15px] leading-[1.5]">
-        <p className="text-[var(--color-ink-soft)]">
-          Most people do not notice it at first.
-        </p>
-        <p className="text-[var(--color-ink)]">
-          The{" "}
-          <span className="bg-[var(--color-accent)] px-1 text-white">trick</span>{" "}
-          is to hear it again, slowly.
-        </p>
-        <p className="text-[var(--color-ink-soft)]">
-          Then say it out loud before it moves on.
-        </p>
-      </div>
-      <div className="grid grid-cols-3 border-t border-[var(--color-line)] code-mono text-[11px] uppercase tracking-[0.1em]">
-        {["Prev", "Repeat", "Next"].map((l, i) => (
-          <span
-            key={l}
-            className={`py-3 text-center text-[var(--color-ink-soft)] ${i < 2 ? "border-r border-[var(--color-line)]" : ""}`}
-          >
-            {l}
-          </span>
-        ))}
-      </div>
-    </div>
   );
 }
 
@@ -172,45 +117,75 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
 
       <section className="border-b border-[var(--color-line)] px-6 pt-20 pb-20 sm:pt-28 sm:pb-24">
         <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
-          <div>
-            <Kicker>iPhone · Audio player</Kicker>
-            <h1 className="mt-6 text-[40px] font-medium leading-[1.04] tracking-[-0.02em] sm:text-[56px]">
-              Repetition is how you learn. HearLoop makes it effortless.
+          <div className="text-right">
+            <div className="flex justify-end">
+              <Kicker>Sentence repeater · iOS and Mac</Kicker>
+            </div>
+            <h1
+              className={`${slogan.className} mt-6 text-[clamp(52px,18vw,112px)] uppercase leading-[0.9] tracking-[0.005em]`}
+            >
+              {SLOGAN.map((w, i, arr) => (
+                <span
+                  key={w}
+                  className={`block ${i === arr.length - 1 ? "mt-[0.18em] text-[var(--color-accent-bright)]" : ""}`}
+                >
+                  {w}
+                </span>
+              ))}
             </h1>
-            <p className="mt-6 font-mono text-[14px] uppercase tracking-[0.12em] text-[var(--color-accent)]">
-              Repeat. Shadow. Learn faster.
+            <p className="ml-auto mt-8 max-w-xl text-[clamp(20px,2.4vw,26px)] font-medium leading-[1.2] tracking-[-0.02em]">
+              Repetition is how you learn. HearLoop makes it effortless.
             </p>
-            <p className="mt-6 max-w-xl text-[18px] leading-[1.55] text-[var(--color-ink-soft)]">
-              Practice any recording by repeating it sentence by sentence while you
-              read along. HearLoop finds the sentences, repeats them, and adds
-              shadowing pauses for you.
+            <p className="ml-auto mt-4 max-w-xl text-[18px] leading-[1.55] text-[var(--color-ink-soft)]">
+              Listen, say it back, play it again until it sticks. HearLoop finds
+              the sentences, repeats them and leaves a pause so you can shadow.
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <div className="mt-9 flex flex-wrap items-center justify-end gap-3">
+              {/* Apple's official badges, unmodified. */}
               <a href={APP_STORE_URL} className="inline-flex" target="_blank" rel="noopener noreferrer">
-                {/* Apple's official badge, unmodified. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/hearloop/app-store-badge.svg"
                   alt="Download on the App Store"
                   width={120}
                   height={40}
-                  className="h-12 w-auto"
+                  className="h-10 w-auto sm:h-12"
                 />
               </a>
-              <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--color-ink-soft)]">
-                Free download · No account
-              </span>
+              <a href={APP_STORE_URL} className="inline-flex" target="_blank" rel="noopener noreferrer">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/hearloop/mac-app-store-badge.svg"
+                  alt="Download on the Mac App Store"
+                  width={156}
+                  height={40}
+                  className="h-10 w-auto sm:h-12"
+                />
+              </a>
             </div>
+            <p className="mt-4 font-mono text-[12px] uppercase leading-[1.7] tracking-[0.1em] text-[var(--color-ink-soft)]">
+              Free download · No account
+              <br />
+              Mac: macOS 14 or later
+            </p>
           </div>
           <div className="flex justify-center lg:justify-end">
-            <PlayerObject />
+            <Image
+              src="/hearloop/hero-device.png"
+              alt="HearLoop player screen: the current sentence highlighted, with speed, repeat, skip and shadowing controls"
+              width={1100}
+              height={1499}
+              priority
+              sizes="(min-width: 1024px) 440px, 80vw"
+              className="h-auto w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[440px]"
+            />
           </div>
         </div>
       </section>
 
       <section className="border-b border-[var(--color-line)] px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl">
-          <Kicker>Perfect for</Kicker>
+          <Kicker>Use it for</Kicker>
           <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
             Any recording you want to practice.
           </h2>
@@ -261,14 +236,14 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
 
       <section className="border-b border-[var(--color-line)] px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-4xl">
-          <Kicker>Simple, private and free</Kicker>
+          <Kicker>No account, no ads</Kicker>
           <h2 className="mt-5 max-w-2xl text-[30px] font-medium leading-[1.1] tracking-[-0.02em] sm:text-[40px]">
             No account. No ads. No tracking.
           </h2>
           <p className="mt-4 max-w-2xl text-[16px] leading-[1.6] text-[var(--color-ink-soft)]">
-            No subscription either. Your files stay on your device, and nothing is
-            uploaded anywhere. Transcription uses Apple&rsquo;s Speech framework on
-            your device, and HearLoop has no server.
+            HearLoop is free. No tracking, no subscription. Your files stay on
+            your device, and nothing is uploaded. Transcription uses Apple&rsquo;s
+            Speech framework on your device. HearLoop has no server.
           </p>
           <Link
             href={`${prefix}/privacy`}

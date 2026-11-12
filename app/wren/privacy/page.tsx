@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://wren.doie.cc/privacy" },
 };
 
-const EFFECTIVE = "October 7, 2026";
+const EFFECTIVE = "November 9, 2026";
 const CONTACT = company.supportEmail;
 
 export default function Page() {
@@ -28,9 +28,24 @@ export default function Page() {
         {
           heading: "What stays on your device",
           paragraphs: [
-            "Your sessions, vocabulary cards, notes, and progress are stored on your own device.",
+            "Your sessions, vocabulary cards, notes, and progress are stored on your own device. If you turn on the optional iCloud sync, some of this data is also kept in your own iCloud; see \"iCloud sync (optional)\" below.",
             "You can export a single backup file and restore it on another device. That file is only ever handled by you.",
             "The API keys you enter are stored in the device Keychain.",
+          ],
+        },
+        {
+          heading: "iCloud sync (optional)",
+          paragraphs: [
+            "iCloud sync is optional. It is off by default and turns on only if you switch it on yourself in Settings.",
+            "When it is on, your learning profile (name, language pair, and learning settings), vocabulary cards, expression notes, and collections are synced between your Mac and iPhone through your own iCloud private database (Apple CloudKit). Conversation history is not synced.",
+            "DOIE cannot receive or view this data, and there is no DOIE server involved. The data stays in your own iCloud account, under Apple's iCloud terms and protections.",
+            "If you turn sync off, new syncing stops. Data already in iCloud stays there until you delete it in your iCloud settings. If you delete a profile while sync is on, it is deleted on all of your connected devices.",
+          ],
+          links: [
+            {
+              label: "Apple iCloud terms",
+              href: "https://www.apple.com/legal/internet-services/icloud/",
+            },
           ],
         },
         {
@@ -87,6 +102,7 @@ export default function Page() {
         {
           heading: "Contact",
           paragraphs: [`Questions about this policy? Email ${CONTACT}.`],
+          links: [{ label: "한국어 (Korean)", href: "/ko/privacy" }],
         },
       ]}
     />

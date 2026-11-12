@@ -4,11 +4,11 @@ import { company } from "../../../content/company";
 
 export const metadata: Metadata = {
   title: "HearLoop: Support",
-  description: "Help with HearLoop, the sentence-by-sentence speech audio player for iPhone.",
+  description: "Help with HearLoop, the sentence-by-sentence speech audio player for iPhone and Mac.",
   alternates: { canonical: "https://hearloop.doie.cc/support" },
 };
 
-const UPDATED = "October 20, 2026";
+const UPDATED = "November 12, 2026";
 
 export default function Page() {
   return (
@@ -17,12 +17,12 @@ export default function Page() {
       updated={UPDATED}
       backLabel="Back to HearLoop"
       backHref="/"
-      intro="HearLoop is a sentence-by-sentence player for reviewing speech audio, on iPhone. It's built by DOIE LLC. We read every message."
+      intro="HearLoop plays any recording one sentence at a time, on iPhone and Mac. It's built by DOIE LLC. We read every message."
       sections={[
         {
           heading: "Contact",
           paragraphs: [
-            `Email ${company.supportEmail} for help or to report a problem. It helps to include your iPhone model, your iOS version, and the HearLoop version.`,
+            `Email ${company.supportEmail} for help or to report a problem. It helps to include your device model, your iOS or macOS version, and the HearLoop version.`,
           ],
           links: [
             { label: company.supportEmail, href: `mailto:${company.supportEmail}` },
@@ -45,6 +45,12 @@ export default function Page() {
           heading: "Does it work in the background and in the car?",
           paragraphs: [
             "Yes. Playback continues in the background, and the previous and next buttons in your car move by sentence.",
+          ],
+        },
+        {
+          heading: "Why don't I see a transcript?",
+          paragraphs: [
+            "Transcription needs iOS 26 or later (macOS 26 or later on Mac). The first time you use a language, Apple may download its speech model. Everything else works without it.",
           ],
         },
         {
