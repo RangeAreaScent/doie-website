@@ -17,7 +17,7 @@ export function Footer({
         <SiblingLinks siblings={siblings} />
         <div className="flex w-full flex-col items-center justify-between gap-4 font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--color-ink-soft)] sm:flex-row">
           <div className="flex items-center gap-2.5">
-            <AppIcon monogram={app.brand.monogram} size={20} />
+            <AppIcon monogram={app.brand.monogram} icon={app.brand.icon} size={20} />
             <span>
               © {new Date().getFullYear()} {app.name} ·{" "}
               <Link href="/" className="hover:text-[var(--color-ink)]">

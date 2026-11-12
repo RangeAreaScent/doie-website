@@ -66,7 +66,7 @@ export default async function AppPage({
 
   return (
     <main className="min-h-screen" style={brandVars(app.brand)}>
-      <Nav name={app.name} monogram={app.brand.monogram} />
+      <Nav name={app.name} monogram={app.brand.monogram} icon={app.brand.icon} />
       <Hero app={app} />
       <TrustBar items={app.trustBar} />
       <Features features={app.features} />

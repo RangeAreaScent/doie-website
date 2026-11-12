@@ -190,10 +190,10 @@ export function HissPage({
             {/* Slogan cap-height sits ~0.052em below its line box; offset so the panel top meets the letters. */}
             <div className="mt-[calc(clamp(34px,12.5cqw,116px)*0.052)]">
               <Image
-                src="/hiss/hero-panel.png"
+                src="/hiss/hero-device.png"
                 alt="HiSS recorder screen with duration, stamp and label keys"
-                width={1200}
-                height={1556}
+                width={1052}
+                height={1440}
                 priority
                 quality={90}
                 sizes="(min-width: 1024px) 460px, 48vw"

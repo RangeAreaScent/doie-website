@@ -2,9 +2,16 @@ import type { Download } from "../../content/types";
 import { AppleLogo } from "./AppleLogo";
 import { WindowsLogo } from "./WindowsLogo";
 
-// Equal-width platform badges (grid). The first (primary) platform gets an
-// accent-tinted fill; the rest are hairline-outlined — lighter than three solid
-// black blocks. A missing url renders as "Coming soon".
+// Platform badges in one row. A live App Store or Mac App Store listing gets
+// Apple's official badge, unmodified (public/badges). Everything else (coming
+// soon, direct downloads, other stores) is a hairline-outlined button, with an
+// accent fill only when it is the first platform. A missing url renders as
+// "Coming soon".
+
+const APPLE_BADGE: Partial<Record<Download["channel"], { src: string; alt: string; width: number }>> = {
+  "app-store": { src: "/badges/app-store.svg", alt: "Download on the App Store", width: 120 },
+  "mac-app-store": { src: "/badges/mac-app-store.svg", alt: "Download on the Mac App Store", width: 156 },
+};
 
 const PLATFORM_SHORT: Record<Download["platform"], string> = {
   iOS: "iPhone",
@@ -37,11 +44,24 @@ function Logo({ platform }: { platform: Download["platform"] }) {
 
 export function DownloadButtons({ downloads }: { downloads: Download[] }) {
   return (
-    <div
-      className="grid gap-3"
-      style={{ gridTemplateColumns: `repeat(${downloads.length}, minmax(0, 1fr))` }}
-    >
+    <div className="flex flex-wrap items-center gap-3">
       {downloads.map((d, i) => {
+        const badge = d.url ? APPLE_BADGE[d.channel] : undefined;
+        if (badge) {
+          return (
+            <a key={`${d.platform}-${d.channel}`} href={d.url} className="inline-flex">
+              {/* Apple's official badge, unmodified. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={badge.src}
+                alt={badge.alt}
+                width={badge.width}
+                height={40}
+                className="h-10 w-auto sm:h-12"
+              />
+            </a>
+          );
+        }
         const { top, bottom } = labels(d);
         const primary = i === 0;
         return (
@@ -50,7 +70,7 @@ export function DownloadButtons({ downloads }: { downloads: Download[] }) {
             href={d.url ?? "#download"}
             aria-label={`${bottom} — ${top}`}
             className={
-              "flex items-center gap-2.5 rounded-lg px-4 py-3 transition " +
+              "flex h-10 items-center gap-2.5 rounded-lg px-4 transition sm:h-12 " +
               (primary
                 ? "bg-[var(--color-accent)] text-white hover:brightness-110"
                 : "border border-[var(--color-line)] text-[var(--color-ink)] hover:border-[var(--color-ink)]")

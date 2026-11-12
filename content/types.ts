@@ -39,6 +39,8 @@ export interface Brand {
   paperSoft?: string;
   /** 2-char lowercase monogram shown in the app icon tile (e.g. "ic"). */
   monogram: string;
+  /** Optional official app icon under /public (square). When set it replaces the monogram tile. */
+  icon?: string;
 }
 
 export interface HeroHeadline {

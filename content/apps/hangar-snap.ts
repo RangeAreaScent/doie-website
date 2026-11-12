@@ -24,6 +24,9 @@ export const hangarSnap: AppContent = {
     headline: { lead: "FAA and EASA regs,", accent: "in the hangar." },
     subheadline:
       "FAA Airworthiness Directives, 14 CFR, TCDS and Advisory Circulars — or EASA Easy Access Rules, CS-XX, Part-66 and TCDS — searchable in the hangar. Pick your authority, copy a citation in a tap, and keep the regs for your tails. No ads, no account.",
+    heroShot: "/snap/hangar-snap/screenshots/search.png",
+    heroShotAlt:
+      "Hangar Snap on iPhone: a search for Cessna showing FAA Airworthiness Directives with their ATA chapters and effective dates.",
     ctaNote: "FAA + EASA · Free core · No ads · No account · iPhone, Mac & Windows",
   },
 
@@ -213,6 +216,7 @@ export const hangarSnap: AppContent = {
     accent: "#39617A",
     accentDeep: "#2C4B60",
     monogram: "HS",
+    icon: "/apps/hangar-snap.png",
   },
 
   downloads: [

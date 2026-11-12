@@ -32,6 +32,9 @@ export const taxLawSnap: AppContent = {
     headline: { lead: "Tax statutes, manuals, rulings, and rates,", accent: "for your jurisdiction." },
     subheadline:
       "Statutes, tax-authority manuals, rulings, and rate tables for the jurisdiction you work in — searchable on your phone. Copy a citation in a tap, keep the sources you cite often, and export when you need to. No ads, no account.",
+    heroShot: "/snap/tax-law-snap/screenshots/search.png",
+    heroShotAlt:
+      "Tax Law Snap on iPhone: a search for charitable contribution showing IRC sections, regulations, forms and publications with type badges.",
     ctaNote: "Free core · No ads · No account · iPhone, Mac & Windows",
   },
 
@@ -222,6 +225,7 @@ export const taxLawSnap: AppContent = {
     accent: "#618B3F",
     accentDeep: "#4E7231",
     monogram: "tl",
+    icon: "/apps/tax-law-snap.png",
   },
 
   downloads: [
