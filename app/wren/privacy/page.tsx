@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://wren.doie.cc/privacy" },
 };
 
-const EFFECTIVE = "November 9, 2026";
+const EFFECTIVE = "November 12, 2026";
 const CONTACT = company.supportEmail;
 
 export default function Page() {
@@ -51,10 +51,15 @@ export default function Page() {
         {
           heading: "AI replies",
           paragraphs: [
-            "To generate a reply, Wren Words sends your conversation text, lookup queries, and session summaries directly from your device to the AI provider you choose: Anthropic (Claude), OpenAI, or Google (Gemini). This uses your own API key.",
+            "On devices that support Apple Intelligence, the text of your conversations and notes may be sent to Apple's Private Cloud Compute to generate replies. DOIE does not receive it.",
+            "Otherwise, to generate a reply, Wren Words sends your conversation text, lookup queries, and session summaries directly from your device to the AI provider you choose: Anthropic (Claude), OpenAI, or Google (Gemini). This uses your own API key.",
             "That provider processes the text under its own terms and privacy policy. Wren Words does not run its own servers for this, so the text does not pass through DOIE.",
           ],
           links: [
+            {
+              label: "Apple Private Cloud Compute",
+              href: "https://security.apple.com/blog/private-cloud-compute/",
+            },
             {
               label: "Anthropic privacy policy",
               href: "https://www.anthropic.com/legal/privacy",

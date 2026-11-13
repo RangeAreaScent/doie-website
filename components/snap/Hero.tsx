@@ -8,10 +8,10 @@ export function Hero({ app }: { app: AppContent }) {
 
   return (
     <section className="border-b border-[var(--color-line)] px-6 pt-16 pb-16 sm:pt-24 sm:pb-20">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-8 lg:gap-12">
         <div>
           <Kicker>{hero.badge}</Kicker>
-          <h1 className="mt-6 text-[42px] font-medium leading-[1.02] tracking-[-0.02em] text-[var(--color-ink)] sm:text-[58px] lg:text-[66px]">
+          <h1 className="mt-6 text-[42px] font-medium leading-[1.02] tracking-[-0.02em] text-[var(--color-ink)] sm:text-[58px] md:text-[clamp(40px,5.6vw,66px)]">
             {hero.headline.lead}
             <br />
             <span className="text-[var(--color-accent)]">{hero.headline.accent}</span>
@@ -36,7 +36,7 @@ export function Hero({ app }: { app: AppContent }) {
           </div>
         </div>
 
-        <div className="relative flex justify-center lg:justify-end">
+        <div className="relative flex justify-center md:justify-end">
           {!hero.heroShot ? (
             <HeroPlaceholder name={app.name} monogram={app.brand.monogram} />
           ) : hero.desktopShot ? (
@@ -59,7 +59,7 @@ export function Hero({ app }: { app: AppContent }) {
             <img
               src={hero.heroShot}
               alt={hero.heroShotAlt}
-              className="w-full max-w-[380px] drop-shadow-[0_12px_40px_rgba(0,0,0,0.12)] lg:max-w-[420px]"
+              className="w-full max-w-[380px] drop-shadow-[0_12px_40px_rgba(0,0,0,0.12)] md:max-w-[420px]"
             />
           )}
         </div>

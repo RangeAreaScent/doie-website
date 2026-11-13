@@ -116,13 +116,18 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
       </header>
 
       <section className="border-b border-[var(--color-line)] px-6 pt-20 pb-20 sm:pt-28 sm:pb-24">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 [container-type:inline-size] md:grid-cols-[1.1fr_1fr] lg:gap-14">
           <div className="text-right">
-            <div className="flex justify-end">
-              <Kicker>Sentence repeater · iOS and Mac</Kicker>
-            </div>
+            {/* Own kicker markup: the marker stays inline so it wraps with the text. */}
+            <p className="kicker">
+              <span
+                aria-hidden
+                className="mr-2.5 inline-block h-[7px] w-[7px] bg-[var(--color-accent)]"
+              />
+              Sentence repeater · iOS and Mac
+            </p>
             <h1
-              className={`${slogan.className} mt-6 text-[clamp(52px,18vw,112px)] uppercase leading-[0.9] tracking-[0.005em]`}
+              className={`${slogan.className} mt-6 text-[clamp(52px,18vw,112px)] uppercase md:text-[clamp(56px,10.5cqw,112px)] leading-[0.9] tracking-[0.005em]`}
             >
               {SLOGAN.map((w, i, arr) => (
                 <span
@@ -169,15 +174,15 @@ export function HearLoopPage({ homeHref = "/" }: { homeHref?: string }) {
               Mac: macOS 14 or later
             </p>
           </div>
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center md:justify-end">
             <Image
               src="/hearloop/hero-device.png"
               alt="HearLoop player screen: the current sentence highlighted, with speed, repeat, skip and shadowing controls"
               width={1100}
               height={1499}
               priority
-              sizes="(min-width: 1024px) 440px, 80vw"
-              className="h-auto w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[440px]"
+              sizes="(min-width: 768px) 440px, 80vw"
+              className="h-auto w-full max-w-[300px] sm:max-w-[400px] md:max-w-[440px]"
             />
           </div>
         </div>

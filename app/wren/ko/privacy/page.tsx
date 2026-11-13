@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
 };
 
-const EFFECTIVE = "2026년 11월 9일";
+const EFFECTIVE = "2026년 11월 12일";
 const CONTACT = company.supportEmail;
 
 // Korean translation of app/wren/privacy/page.tsx. Keep the two in step.
@@ -55,10 +55,15 @@ export default function Page() {
         {
           heading: "AI 답변",
           paragraphs: [
-            "답변을 만들기 위해 Wren Words는 대화 텍스트, 단어 조회 질의, 세션 요약을 사용자의 기기에서 사용자가 고른 AI 제공업체(Anthropic(Claude), OpenAI, Google(Gemini))로 직접 보냅니다. 이때 사용자 본인의 API 키를 사용합니다.",
+            "Apple Intelligence를 지원하는 기기에서는 대화와 노트의 텍스트가 답변을 만들기 위해 Apple의 Private Cloud Compute로 전송될 수 있습니다. DOIE는 이를 받지 않습니다.",
+            "그 외에는 답변을 만들기 위해 Wren Words는 대화 텍스트, 단어 조회 질의, 세션 요약을 사용자의 기기에서 사용자가 고른 AI 제공업체(Anthropic(Claude), OpenAI, Google(Gemini))로 직접 보냅니다. 이때 사용자 본인의 API 키를 사용합니다.",
             "해당 제공업체는 자체 약관과 개인정보 처리방침에 따라 텍스트를 처리합니다. Wren Words는 이를 위한 자체 서버를 운영하지 않으므로 텍스트는 DOIE를 거치지 않습니다.",
           ],
           links: [
+            {
+              label: "Apple Private Cloud Compute",
+              href: "https://security.apple.com/blog/private-cloud-compute/",
+            },
             {
               label: "Anthropic 개인정보 처리방침",
               href: "https://www.anthropic.com/legal/privacy",

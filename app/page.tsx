@@ -116,7 +116,7 @@ const products: Product[] = [
     name: "mMDd",
     group: "everyday",
     desc: "A Markdown editor that is clean, light, and free. Open a file and write, with themes to match how you like to read.",
-    platform: "Mac · Windows",
+    platform: "Mac",
     status: "On the Mac App Store",
     live: true,
     accent: "#B03A2E",
